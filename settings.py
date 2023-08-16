@@ -4,7 +4,7 @@ SESSION_CONFIGS = [
     dict(
         name='Human_group',
         app_sequence=['experiment_human'],
-        num_demo_participants=1,
+        num_demo_participants=2,
     ),
     dict(
         name='AI_group',
@@ -27,11 +27,11 @@ SESSION_FIELDS = []
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ja'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+REAL_WORLD_CURRENCY_CODE = 'JPY'
+USE_POINTS = False
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable

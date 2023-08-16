@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="{% static 'global/slider.css' %}">
+
+<style>
+    #scale_num{
+        width: 100%;
+    }
+</style>
+
+
+<div class="card bg-light mx-auto p-5 my-5">
+    <div class="mt-3"> 
+       
+            あなたの1回目の推測は: <b>?</b>
+     
+    </div>
+
+    <label for="slider" class="form-label"></label>
+    <input type="range" name='WTP' class="form-range nonanchoring" min="0" list="scale" id="slider">
+    <div class="grid" id="scale_grid"></div>
+    <div class="d-flex justify-content-between" id="scale_num"></div>
+</div>
+
+
+<script>
+    // 最大値と刻み幅の設定
+    const maxP = js_vars.maxP;
+    const step = js_vars.step;
+    const slider = document.getElementById('slider');
+    slider.max = maxP;
+    slider.step = step;
+    slider.value = 0;
+
+    const scale_grid = document.getElementById('scale_grid');
+    for (j=0; j<=50; j++) {
+        var gridspan = document.createElement('span');
+        if (j%5 == 0) {
+            gridspan.classList.add("boldgrid");
+        }
+        scale_grid.append(gridspan);
+    }
+
+    const scale_num = document.getElementById('scale_num');
+    for (i=0; i<6; i++){
+        var num = document.createElement('div');
+        num.innerHTML = maxP/5*i;
+        if (js_vars.lang == 'ja') num.style.width = '30px';
+        else num.style.width = '10px';
+        num.style.textAlign = 'center';
+        scale_num.append(num);
+    }
+
+    // WTPの表示
+    function render (output, value) {
+        output.innerHTML = value;
+    }
+    const input = document.querySelector('input');
+    const output = document.querySelector('b');
+
+    input.addEventListener('input', function (e) {
+        render(output, e.target.value)
+    }, false)
+
+    $(document).ready(function () {
+        $('input.nonanchoring').on('click', function () {
+            $('input.nonanchoring').addClass('nonanchoring_thumb');
+            render(output, input.value);
+        });
+    });
+</script>
