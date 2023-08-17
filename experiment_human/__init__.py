@@ -4,12 +4,13 @@ import random
 doc = """
 Your app description
 """
+Maxround = 3
 
 
 class C(BaseConstants):
     NAME_IN_URL = 'experiment'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 1
+    NUM_ROUNDS = Maxround
 
 
 class Subsession(BaseSubsession):
@@ -29,16 +30,29 @@ class Player(BasePlayer):
     )
     random_reference = models.IntegerField()
 
+
 # Functions
 
-#find a random reference
+#Find a random reference
 def Refer_generate(player:Player):
     players = player.get_others_in_group()
     guesses = [p.guess_1 for p in players]
     Refers =  random.sample(guesses,1)
     return Refers[0]
 
+#Save guess data to participant.Guess_set
+ ## every round, generate a list to save the 2 guess and reference.
+    ### then save the list_per_round into the participant.Guess_set（list）
+def Save_guess(player:Player):
 
+    if player.round_number == 1 :
+        player.participant.Guess_set = []
+
+    guess_per_round    = []
+    guess_per_round.append(player.guess_1)
+    guess_per_round.append(player.guess_2)
+    guess_per_round.append(player.random_reference)
+    player.participant.Guess_set.append(guess_per_round)
 
 # PAGES
 class News(Page):
@@ -66,9 +80,17 @@ class Guess2(Page):
     form_model = 'player'
     form_fields = ['guess_2']
 
+class ResultWait(WaitPage):
+    @staticmethod
+    def vars_for_template(player:Player):
+        Save_guess(player)
+
+class test(Page):
+    pass
 
 
-page_sequence = [ News, Guess1, Wait, Reference, Guess2 ]
+
+page_sequence = [ News, Guess1, Wait, Reference, Guess2, ResultWait,test]
 
 
 

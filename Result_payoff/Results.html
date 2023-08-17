@@ -1,0 +1,11 @@
+{{ block title }}
+    <p><center><strong>報酬</strong></center></p>
+{{ endblock }}
+<p>ラウンド {{ participant.selected_round}}の{{participant.selected_guess}}回目の推測が選ばれました。</p>
+<p>ゆえに、あなたの最終報酬は：</p>
+{{ block content }}
+
+    {{ next_button }}
+{{ endblock }}
+
+

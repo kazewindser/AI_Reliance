@@ -3,12 +3,12 @@ from os import environ
 SESSION_CONFIGS = [
     dict(
         name='Human_group',
-        app_sequence=['experiment_human'],
+        app_sequence=['experiment_human','questionaire','Result_payoff'],
         num_demo_participants=2,
     ),
     dict(
         name='AI_group',
-        app_sequence=['experiment_AI'],
+        app_sequence=['experiment_AI','questionaire','Result_payoff'],
         num_demo_participants=1,
     ),
 ]
@@ -19,11 +19,19 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
+    real_world_currency_per_point=1.00, participation_fee=500, doc=""
 )
 
-PARTICIPANT_FIELDS = []
+PARTICIPANT_FIELDS = ['Guess_set','selected_round','selected_guess','Payoff']
 SESSION_FIELDS = []
+
+#Real Result
+REAL_RESULT = [1,2,3]
+                # ,4,5,6,7,8,9,10,
+                # 11,12,13,14,15,16,17,18,19,20,
+                # 21,22,23,24,25,26,27,28,29,30,
+                # 31,32,33,34,35,36,37,38,39,40,
+                # 41,42,43,44,45]
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
