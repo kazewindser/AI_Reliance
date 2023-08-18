@@ -4,7 +4,7 @@ SESSION_CONFIGS = [
     dict(
         name='Human_group',
         app_sequence=['experiment_human','questionaire','Result_payoff'],
-        num_demo_participants=2,
+        num_demo_participants=3,
     ),
     dict(
         name='AI_group',
@@ -22,7 +22,9 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=500, doc=""
 )
 
+
 PARTICIPANT_FIELDS = ['Guess_set','selected_round','selected_guess','Payoff']
+
 SESSION_FIELDS = []
 
 #Real Result

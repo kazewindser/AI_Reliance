@@ -1,0 +1,23 @@
+{{ block title }}
+{{ endblock }}
+{{ block content }}
+
+{{ if a < b }}
+    <font size=6><center><strong>Round {{ a }}</strong></center></font>
+{{ else }}
+    <p> </p>
+    <font size=6><center><strong>これで全タスクが終了しました。</strong></center></font>
+    <p> </p>
+    <font size=6><center><strong>次のページのアンケートに回答いただいた後、あなたの最終報酬がわかるようになります。</strong></center></font>
+    <p> </p>
+{{ endif }}
+    <p> </p>
+    <p> </p>
+    <p> </p>
+<p>あなたの全ての推測結果は下記の通り：</p>
+{{ participant.Guess_set }}
+
+    {{ formfields }}
+    {{ next_button }}
+
+{{ endblock }}

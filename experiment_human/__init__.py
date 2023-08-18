@@ -44,17 +44,24 @@ def Refer_generate(player:Player):
  ## every round, generate a list to save the 2 guess and reference.
     ### then save the list_per_round into the participant.Guess_set（list）
 def Save_guess(player:Player):
+        guess_per_round    = []
+        guess_per_round.append(player.guess_1)
+        guess_per_round.append(player.guess_2)
+        guess_per_round.append(player.random_reference)
+        player.participant.Guess_set.append(guess_per_round)
 
-    if player.round_number == 1 :
-        player.participant.Guess_set = []
-
-    guess_per_round    = []
-    guess_per_round.append(player.guess_1)
-    guess_per_round.append(player.guess_2)
-    guess_per_round.append(player.random_reference)
-    player.participant.Guess_set.append(guess_per_round)
+# def Set_Guess_set(player:Player):
+#     if player.round_number == 0 :
+#         player.participant.Guess_set = []
 
 # PAGES
+class Round_1(Page):
+    @staticmethod
+    def is_displayed(player):
+        if player.round_number == 1:
+            player.participant.Guess_set = []   
+        return player.round_number == 1
+
 class News(Page):
     pass
 
@@ -80,17 +87,21 @@ class Guess2(Page):
     form_model = 'player'
     form_fields = ['guess_2']
 
-class ResultWait(WaitPage):
+
+class Finish(Page):
     @staticmethod
     def vars_for_template(player:Player):
         Save_guess(player)
+        a = player.round_number +1
+        b = Maxround+1
+        return dict(
+            a = a,
+            b = b
+        )
 
-class test(Page):
-    pass
 
 
-
-page_sequence = [ News, Guess1, Wait, Reference, Guess2, ResultWait,test]
+page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Finish]
 
 
 
