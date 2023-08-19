@@ -1,10 +1,11 @@
 from otree.api import *
+from settings import Maxround
 import random
 
 doc = """
 Your app description
 """
-Maxround = 3
+
 
 
 class C(BaseConstants):
@@ -50,16 +51,14 @@ def Save_guess(player:Player):
         guess_per_round.append(player.random_reference)
         player.participant.Guess_set.append(guess_per_round)
 
-# def Set_Guess_set(player:Player):
-#     if player.round_number == 0 :
-#         player.participant.Guess_set = []
+
 
 # PAGES
 class Round_1(Page):
     @staticmethod
     def is_displayed(player):
         if player.round_number == 1:
-            player.participant.Guess_set = []   
+            player.participant.Guess_set = []   #在一开始赋值总数据列表
         return player.round_number == 1
 
 class News(Page):
@@ -69,7 +68,7 @@ class Guess1(Page):
     form_model = 'player'
     form_fields = ['guess_1']
 
-
+#此页面必要因为需要提取reference
 class Wait(WaitPage):
     pass
 

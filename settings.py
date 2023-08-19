@@ -3,12 +3,12 @@ from os import environ
 SESSION_CONFIGS = [
     dict(
         name='Human_group',
-        app_sequence=['experiment_human','questionaire','Result_payoff'],
-        num_demo_participants=3,
+        app_sequence=['experiment_human','Result_payoff'],
+        num_demo_participants=2,
     ),
     dict(
         name='AI_group',
-        app_sequence=['experiment_AI','questionaire','Result_payoff'],
+        app_sequence=['experiment_AI','Result_payoff'],
         num_demo_participants=1,
     ),
 ]
@@ -23,17 +23,17 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 
 
-PARTICIPANT_FIELDS = ['Guess_set','selected_round','selected_guess','Payoff']
+PARTICIPANT_FIELDS = ['Guess_set']
 
 SESSION_FIELDS = []
 
+Maxround = 3
 #Real Result
-REAL_RESULT = [1,2,3]
-                # ,4,5,6,7,8,9,10,
-                # 11,12,13,14,15,16,17,18,19,20,
-                # 21,22,23,24,25,26,27,28,29,30,
-                # 31,32,33,34,35,36,37,38,39,40,
-                # 41,42,43,44,45]
+REAL_RESULT = [1,2,3,4,5,6,7,8,9,10,
+                11,12,13,14,15,16,17,18,19,20,
+                21,22,23,24,25,26,27,28,29,30,
+                31,32,33,34,35,36,37,38,39,40,
+                41,42,43,44,45]
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans

@@ -1,5 +1,5 @@
 from otree.api import *
-from settings import REAL_RESULT
+from settings import REAL_RESULT, Maxround
 import random
 
 doc = """
@@ -24,27 +24,11 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     pass
 
-#Functions
-def set_payoffs(player:Player):
 
-    #Randomly select round and guess
-    player.participant.selected_round = random.randint(1, 45)
-    player.participant.selected_guess = random.randint(1,2)
-
-    # # Get the real result of that round 
-    # a = player.participant.selected_round
-    # b = player.participant.selected_guess
-    # selected_real_result = REAL_RESULT[a-1]
-
-    # #Calculate the payoff
-    # guess_of_selected_round = player.participant.Guess_set
-    # player.participant.Payoff =     
 
 # PAGES
-class MyPage(Page):
-    @staticmethod
-    def vars_for_template(player: Player):
-        set_payoffs(player)
+class Q1(Page):
+    pass
 
 
 class ResultsWaitPage(WaitPage):
@@ -55,4 +39,4 @@ class Results(Page):
     pass
 
 
-page_sequence = [MyPage, Results]
+page_sequence = [Q1, Results]

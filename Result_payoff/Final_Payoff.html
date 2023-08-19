@@ -1,0 +1,17 @@
+{{ block title }}
+    <p><center><strong>報酬</strong></center></p>
+{{ endblock }}
+
+{{ block content }}
+
+
+<p>あなたのラウンド　<font size=5><strong>{{ player.selected_round }}</strong></font>　の　<font size=5><strong>{{ player.selected_guess }}</strong></font>  回目の推測：<font size=5><strong>{{ player.R }}</strong></font>  が選ばれました。</p>
+
+<p>実際の結果は：<font size=5><strong>{{ player.real_result }}</strong></font>。 </p>
+<p>　</p>
+<p>ゆえに、あなたの最終報酬は：</p>
+<p><center><font size=5><strong>　{{ participant.payoff_plus_participation_fee }}　</strong></font></center></p>
+{{ next_button }}
+{{ endblock }}
+
+
