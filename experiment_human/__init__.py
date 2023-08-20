@@ -49,7 +49,8 @@ def Save_guess(player:Player):
         guess_per_round.append(player.guess_1)
         guess_per_round.append(player.guess_2)
         guess_per_round.append(player.random_reference)
-        player.participant.Guess_set.append(guess_per_round)
+        player.participant.Guess_set[player.round_number-1] = guess_per_round
+      
 
 
 
@@ -58,7 +59,7 @@ class Round_1(Page):
     @staticmethod
     def is_displayed(player):
         if player.round_number == 1:
-            player.participant.Guess_set = []   #在一开始赋值总数据列表
+            player.participant.Guess_set = ['NN']*45   #在一开始赋值总数据列表
         return player.round_number == 1
 
 class News(Page):
