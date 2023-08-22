@@ -24,7 +24,7 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     guess_1 = models.IntegerField(
-        min=-1, max=100, label="Please pick a number from 0 to 100:",
+        min=-1, max=100, label="Please pick a number from 0 to 100:"
     )
     guess_2 = models.IntegerField(
         min=-1, max=100, label="Please pick a number from 0 to 100:",
@@ -32,6 +32,8 @@ class Player(BasePlayer):
     random_reference = models.IntegerField()
     timeout_1 = models.BooleanField(initial=False)
     timeout_2 = models.BooleanField(initial=False)
+
+    guess_1_check = models.IntegerField()
 
 
 # Functions
@@ -96,9 +98,9 @@ class News(Page):
     timeout_seconds = 5
 
 class Guess1(Page):
-    timeout_seconds = 10
+    timeout_seconds = 16
     form_model = 'player'
-    form_fields = ['guess_1']
+    form_fields = ['guess_1', 'guess_1_check']
     @staticmethod
     def before_next_page(player, timeout_happened):
         if timeout_happened:
@@ -121,7 +123,7 @@ class Reference(Page):
     )
 
 class Guess2(Page):
-    timeout_seconds = 10
+    timeout_seconds = 60
     form_model = 'player'
     form_fields = ['guess_2']
     @staticmethod
