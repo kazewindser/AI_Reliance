@@ -1,0 +1,14 @@
+<div>
+    <div style="padding-bottom:5px">
+        <button type="button" class="btn-primary btn" onclick="show()">▼ 全ての推測結果を見る</button>
+    </div>
+    <div id="results_show" style="display: none;">
+        {{ include C.FINALRESULT_TEMPLATE }}
+    </div>
+</div>
+<script>
+    function show() {
+        ele = document.getElementById('results_show')
+        ele.style.display = 'block'
+    }
+</script>

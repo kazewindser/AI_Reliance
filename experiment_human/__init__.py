@@ -24,16 +24,17 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     guess_1 = models.IntegerField(
-        min=-1, max=100, label="Please pick a number from 0 to 100:"
+        min=0, max=100, label="Please pick a number from 0 to 100:"
     )
     guess_2 = models.IntegerField(
-        min=-1, max=100, label="Please pick a number from 0 to 100:",
+        min=0, max=100, label="Please pick a number from 0 to 100:",
     )
     random_reference = models.IntegerField()
     timeout_1 = models.BooleanField(initial=False)
     timeout_2 = models.BooleanField(initial=False)
 
     guess_1_check = models.IntegerField()
+    guess_2_check = models.IntegerField()
 
 
 # Functions
@@ -43,14 +44,13 @@ def Refer_generate(player:Player):
     players = player.get_others_in_group()
     guess1_s = []
     for p in players:
-        if p.timeout_1 == False:
+        if p.guess_1_check == 1:
             guess1_s.append(p.guess_1)
-        else:
-            if p.guess_1 != 0:
-                guess1_s.append(p.guess_1)
-
-    Refer =  random.sample(guess1_s,1)
-
+    if guess1_s == []:
+        Refer = []
+        Refer.append(random.randint(1,100))
+    else:
+        Refer =  random.sample(guess1_s,1)
 
     return Refer[0]
 
@@ -61,23 +61,15 @@ def Save_guess(player:Player):
 
         guess_per_round    = []
 
-        if player.timeout_1 == False:
+        if player.guess_1_check == 1:
             guess_per_round.append(player.guess_1)
-        else: #when there exist a timeout
-            if player.guess_1 == 0:       #if there is no input (when timeout)
-                guess_per_round.append('X')
-            else:                          #if there is a input (when timeout)
-                guess_per_round.append(player.guess_1)
-            player.timeout_1 = False 
+        else:
+            guess_per_round.append('X')
 
-        if player.timeout_2 == False:
+        if player.guess_2_check == 1:
             guess_per_round.append(player.guess_2)
         else:
-            if player.guess_2 == 0:
-                guess_per_round.append('X')
-            else:
-                guess_per_round.append(player.guess_2)
-            player.timeout_2 = False
+            guess_per_round.append('X')
  
         guess_per_round.append(player.random_reference)
         player.participant.Guess_set[player.round_number-1] = guess_per_round
@@ -95,10 +87,10 @@ class Round_1(Page):
         return player.round_number == 1
 
 class News(Page):
-    timeout_seconds = 5
+    timeout_seconds = 1
 
 class Guess1(Page):
-    timeout_seconds = 16
+    timeout_seconds = 10
     form_model = 'player'
     form_fields = ['guess_1', 'guess_1_check']
     @staticmethod
@@ -123,9 +115,9 @@ class Reference(Page):
     )
 
 class Guess2(Page):
-    timeout_seconds = 60
+    timeout_seconds = 10
     form_model = 'player'
-    form_fields = ['guess_2']
+    form_fields = ['guess_2','guess_2_check']
     @staticmethod
     def before_next_page(player, timeout_happened):
         if timeout_happened:
@@ -133,9 +125,11 @@ class Guess2(Page):
             # because otherwise they may be left null.
             player.timeout_2 = True
 
+class Wait2(WaitPage):
+    pass
 
 class Finish(Page):
-    timeout_seconds = 0.8
+    # timeout_seconds = 0.8
     @staticmethod
     def vars_for_template(player:Player):
         Save_guess(player)
@@ -148,7 +142,7 @@ class Finish(Page):
 
 
 
-page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Finish]
+page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Wait2, Finish]
 
 
 
