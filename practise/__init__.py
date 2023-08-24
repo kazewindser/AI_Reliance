@@ -7,10 +7,10 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'instruction'
+    NAME_IN_URL = 'practise'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
-    SLIDE_HUMAN = '../_templates/global/Slide_human.html'
+
 
 class Subsession(BaseSubsession):
     pass
@@ -25,8 +25,16 @@ class Player(BasePlayer):
 
 
 # PAGES
-class Instruction(Page):
+class MyPage(Page):
     pass
 
 
-page_sequence = [Instruction]
+class ResultsWaitPage(WaitPage):
+    pass
+
+
+class Results(Page):
+    pass
+
+
+page_sequence = [MyPage, ResultsWaitPage, Results]

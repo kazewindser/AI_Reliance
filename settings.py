@@ -2,18 +2,33 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-        name='Human_group',
+        name='experiment_human_test',
         app_sequence=['experiment_human','Result_payoff'],
         num_demo_participants=3,
     ),
     dict(
-        name='AI_group',
+        name='experiment_AI_test',
         app_sequence=['experiment_AI','Result_payoff'],
         num_demo_participants=1,
     ),
     dict(
         name='instruction_test',
         app_sequence=['instruction'],
+        num_demo_participants=1,
+    ),
+    dict(
+        name='quiz_test',
+        app_sequence=['instruction'],
+        num_demo_participants=1,
+    ),
+    dict(
+        name='HUMAN',
+        app_sequence=['instruction','quiz','practise','experiment_human','questionaire','Result_payoff'],
+        num_demo_participants=1,
+    ),
+    dict(
+        name='AI',
+        app_sequence=['instruction','quiz','practise','experiment_AI','questionaire','Result_payoff'],
         num_demo_participants=1,
     ),
 ]
