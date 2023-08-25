@@ -1,11 +1,7 @@
 {{ block title }}
     {{ Lexicon.quiz }}
     (
-        {{ if ja }}
             6問中{{ numq }}問
-        {{ else }}
-            question {{ numq }} out of 6
-        {{ endif }}
     )
 {{ endblock }}
 {{ block content }}
@@ -13,5 +9,5 @@
     {{ formfields }}
     {{ next_button }}
 
-    {{ include C.HIDDEN_SLIDE_TEMPLATE }}
+    {{ include C.HIDDEN_SLIDE_HUMAN }}
 {{ endblock }}

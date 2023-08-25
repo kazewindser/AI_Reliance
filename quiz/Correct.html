@@ -1,0 +1,26 @@
+{{ block title }}
+    {{ Lexicon.quiz }}
+    (
+        5問中{{ numq }}問
+    )
+{{ endblock }}
+
+{{ block content }}
+    <div class="mb-3">
+            正解です。
+        <br>
+    </div>
+
+    {{ if numq < 5 }}
+        <div class="card bg-light mb-3">
+            <div class="card-body">
+            {{ for c in comms}}
+                {{ c }}<br>
+            {{ endfor }}
+            </div>
+        </div>
+    {{ endif }}
+
+    {{ next_button }}
+
+{{ endblock }}

@@ -1,0 +1,14 @@
+{{ block title }}
+    <p><center><strong>アンケート</strong></center></p>
+{{ endblock }}
+
+{{ block content }}
+    {{ formfield "age" }}
+    {{ formfield "gender" }}
+    {{ formfield "lan_jp" }}
+    {{ formfield "affiliate" }}
+    {{ formfield "chatGPT" }}
+    {{ formfield "chatGPT_times"}}
+    {{ formfield "programming"}}
+    {{ next_button }}
+{{ endblock }}

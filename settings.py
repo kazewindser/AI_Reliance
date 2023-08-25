@@ -18,18 +18,23 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='quiz_test',
-        app_sequence=['instruction'],
+        app_sequence=['quiz','practise'],
+        num_demo_participants=1,
+    ),
+    dict(
+        name='questionnaire_test',
+        app_sequence=['questionnaire'],
         num_demo_participants=1,
     ),
     dict(
         name='HUMAN',
-        app_sequence=['instruction','quiz','practise','experiment_human','questionaire','Result_payoff'],
-        num_demo_participants=1,
+        app_sequence=['instruction','quiz','practise','experiment_human','questionnaire','Result_payoff'],
+        num_demo_participants=3,
     ),
     dict(
         name='AI',
-        app_sequence=['instruction','quiz','practise','experiment_AI','questionaire','Result_payoff'],
-        num_demo_participants=1,
+        app_sequence=['instruction','quiz','practise','experiment_AI','questionnaire','Result_payoff'],
+        num_demo_participants=3,
     ),
 ]
 
