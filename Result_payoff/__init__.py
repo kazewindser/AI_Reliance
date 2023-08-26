@@ -34,23 +34,33 @@ class Player(BasePlayer):
 #Functions
 
 def set_selection(player:Player):  #500+max{0, 2000-0.3(R-100r)^2}=?円
-    while True:
         player.selected_round = random.randint(1,Maxround)
         player.selected_guess = random.randint(1,2)
 
-        a = player.selected_round
-        b = player.selected_guess
-        selcted_R = player.participant.Guess_set[a-1][b-1]
+    #     a = player.selected_round
+    #     b = player.selected_guess
+    #     selcted_R = player.participant.Guess_set[a-1][b-1]
 
-        if selcted_R != 'X':
-            break
+    #     if selcted_R == 'X':
+    #         player.real_result = 
 
-    player.real_result = REAL_RESULT[a-1]
-    player.R = selcted_R
+            
+
+    #         player.real_result = REAL_RESULT[a-1]
+    # player.R = selcted_R
 
 def set_additional_payoff(player:Player):    #max{0, 2000-0.3(R-100r)^2}=?円
-    a = 2000-0.3*(player.R-player.real_result)**2
-    player.payoff = max(0,a)
+    a = player.selected_round
+    b = player.selected_guess
+    selcted_R = player.participant.Guess_set[a-1][b-1]
+    player.real_result = REAL_RESULT[a-1]
+
+    if selcted_R == 'X':
+        player.payoff = 0
+    else:
+        player.R = selcted_R    
+        ad_pay = 2000-0.3*(player.R-player.real_result)**2
+        player.payoff = max(0,ad_pay)
 
 
 # PAGES
