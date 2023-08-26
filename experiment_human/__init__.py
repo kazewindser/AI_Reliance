@@ -129,7 +129,7 @@ class Wait2(WaitPage):
     pass
 
 class Finish(Page):
-    # timeout_seconds = 0.8
+    timeout_seconds = 0.8
     @staticmethod
     def vars_for_template(player:Player):
         Save_guess(player)

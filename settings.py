@@ -28,6 +28,11 @@ SESSION_CONFIGS = [
         num_demo_participants=1,
     ),
     dict(
+        name='practise_test',
+        app_sequence=['practise'],
+        num_demo_participants=3,
+    ),
+    dict(
         name='HUMAN',
         app_sequence=['instruction','quiz','practise','experiment_human','questionnaire','Result_payoff'],
         num_demo_participants=3,
