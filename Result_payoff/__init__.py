@@ -29,7 +29,7 @@ class Player(BasePlayer):
     selected_guess = models.IntegerField()
 
     real_result = models.IntegerField() #100r
-    R = models.IntegerField()
+    R = models.IntegerField(initial = -1)
 
 #Functions
 
@@ -44,9 +44,7 @@ def set_selection(player:Player):  #500+max{0, 2000-0.3(R-100r)^2}=?円
     #     if selcted_R == 'X':
     #         player.real_result = 
 
-            
-
-    #         player.real_result = REAL_RESULT[a-1]
+    # player.real_result = REAL_RESULT[a-1]
     # player.R = selcted_R
 
 def set_additional_payoff(player:Player):    #max{0, 2000-0.3(R-100r)^2}=?円

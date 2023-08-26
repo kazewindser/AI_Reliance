@@ -5,7 +5,14 @@
 {{ block content }}
 
 
-<p>あなたのラウンド　<font size=5><strong>{{ player.selected_round }}</strong></font>　の　<font size=5><strong>{{ player.selected_guess }}</strong></font>  回目の推測：<font size=5><strong>{{ player.R }}</strong></font>  が選ばれました。</p>
+<p>あなたのラウンド　<font size=5><strong>{{ player.selected_round }}</strong></font>　の　<font size=5><strong>{{ player.selected_guess }}</strong></font>  回目の推測：
+    <font size=5><strong>
+    {{ if player.R == -1 }}
+        無効推測：N
+    {{ else }}
+        {{ player.R }}
+    {{ endif }}
+    </strong></font>  が選ばれました。</p>
 
 <p>実際の結果は：<font size=5><strong>{{ player.real_result }}</strong></font>。 </p>
 <p>　</p>
