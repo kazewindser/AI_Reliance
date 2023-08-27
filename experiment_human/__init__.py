@@ -9,9 +9,11 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'experiment'
+    NAME_IN_URL = 'experiment_human'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = Maxround
+
+    NEWS = '../_templates/global/News_template.html'
 
 
 class Subsession(BaseSubsession):
@@ -64,12 +66,12 @@ def Save_guess(player:Player):
         if player.guess_1_check == 1:
             guess_per_round.append(player.guess_1)
         else:
-            guess_per_round.append('X')
+            guess_per_round.append('N')
 
         if player.guess_2_check == 1:
             guess_per_round.append(player.guess_2)
         else:
-            guess_per_round.append('X')
+            guess_per_round.append('N')
  
         guess_per_round.append(player.random_reference)
         player.participant.Guess_set[player.round_number-1] = guess_per_round
@@ -100,11 +102,12 @@ class Guess1(Page):
             # because otherwise they may be left null.
             player.timeout_1 = True
 
-#此页面必要因为需要提取reference
+
 class Wait(WaitPage):
     pass
 
 class Reference(Page):
+    timeout_seconds = 5
     @staticmethod
     def vars_for_template(player: Player):
         group = player.group
@@ -128,21 +131,27 @@ class Guess2(Page):
 class Wait2(WaitPage):
     pass
 
-class Finish(Page):
-    timeout_seconds = 0.8
+class Finish_Round(Page):
+    timeout_seconds = 1
     @staticmethod
-    def vars_for_template(player:Player):
+    def is_displayed(player):
         Save_guess(player)
-        a = player.round_number +1
-        b = Maxround+1
+        return player.round_number < Maxround
+    @staticmethod
+    def vars_for_template(player: Player):
+        numq = player.round_number+1
         return dict(
-            a = a,
-            b = b
-        )
+        numq = numq
+    )
+
+class Finish_Task(Page):
+    @staticmethod
+    def is_displayed(player):
+        Save_guess(player)
+        return player.round_number == Maxround
 
 
-
-page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Wait2, Finish]
+page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Wait2, Finish_Round, Finish_Task ]
 
 
 

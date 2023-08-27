@@ -1,5 +1,5 @@
 from otree.api import *
-from settings import REAL_RESULT, Maxround
+from settings import REAL_RESULT,AI_REF_SET, Maxround
 import random
 
 doc = """
@@ -37,15 +37,6 @@ def set_selection(player:Player):  #500+max{0, 2000-0.3(R-100r)^2}=?円
         player.selected_round = random.randint(1,Maxround)
         player.selected_guess = random.randint(1,2)
 
-    #     a = player.selected_round
-    #     b = player.selected_guess
-    #     selcted_R = player.participant.Guess_set[a-1][b-1]
-
-    #     if selcted_R == 'X':
-    #         player.real_result = 
-
-    # player.real_result = REAL_RESULT[a-1]
-    # player.R = selcted_R
 
 def set_additional_payoff(player:Player):    #max{0, 2000-0.3(R-100r)^2}=?円
     a = player.selected_round
@@ -53,7 +44,7 @@ def set_additional_payoff(player:Player):    #max{0, 2000-0.3(R-100r)^2}=?円
     selcted_R = player.participant.Guess_set[a-1][b-1]
     player.real_result = REAL_RESULT[a-1]
 
-    if selcted_R == 'X':
+    if selcted_R == 'N':
         player.payoff = 0
     else:
         player.R = selcted_R    

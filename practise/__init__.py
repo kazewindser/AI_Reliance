@@ -77,14 +77,18 @@ class Wait(WaitPage):
     pass
 
 class p_Reference(Page):
-    timeout_seconds = 3
+    timeout_seconds = 10
     @staticmethod
     def vars_for_template(player: Player):
-        group = player.group
-        Refer = Refer_generate(player)
-        player.random_reference = Refer
+        inAI = player.session.config['AI']
+        if inAI == False:
+            Refer = Refer_generate(player)      
+            player.random_reference = Refer
+        else:
+            Refer = 'Now in AI Group'
         return dict(
-        Refer = Refer
+        Refer = Refer,
+        inAI = inAI
     )
 
 class p_Guess2(Page):
@@ -97,6 +101,12 @@ class p_Guess2(Page):
             # you may want to fill a default value for any form fields,
             # because otherwise they may be left null.
             player.timeout_2 = True
+    @staticmethod
+    def vars_for_template(player: Player):
+        inAI = player.session.config['AI']
+        return dict(
+        inAI = inAI
+    )
 
 class Wait2(WaitPage):
     pass
@@ -121,7 +131,7 @@ class p_Finish(Page):
 
 
 
-page_sequence = [ p_Start, p_News, p_Guess1, Wait, p_Reference, p_Guess2, p_Finish,Wait2]
+page_sequence = [ p_Start, p_News, p_Guess1, Wait, p_Reference, p_Guess2, p_Finish, Wait2]
 
 
 

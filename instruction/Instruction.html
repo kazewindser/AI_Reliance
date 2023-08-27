@@ -9,7 +9,11 @@
         スライドを前後に進めることができます。      
     </div>
     <p> </p>
-    {{ include C.SLIDE_HUMAN }}
+    {{ if inAI == True }}
+        {{ include C.SLIDE_AI }}
+    {{ else }}
+        {{ include C.SLIDE_HUMAN }}
+    {{ endif }}
     <div id="nextbtn" class="justify-content-end mt-1" style="display: none;">
         <button class="btn-primary btn">次へ</button>
     </div>

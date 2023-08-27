@@ -5,6 +5,7 @@ SESSION_CONFIGS = [
         name='experiment_human_test',
         app_sequence=['experiment_human','Result_payoff'],
         num_demo_participants=3,
+        AI = False
     ),
     dict(
         name='experiment_AI_test',
@@ -16,6 +17,7 @@ SESSION_CONFIGS = [
         name='instruction_test',
         app_sequence=['instruction'],
         num_demo_participants=1,
+        AI = True
     ),
     dict(
         name='quiz_test',
@@ -30,17 +32,19 @@ SESSION_CONFIGS = [
     dict(
         name='practise_test',
         app_sequence=['practise'],
-        num_demo_participants=3,
+        num_demo_participants=1,
+        AI = True
     ),
     dict(
         name='HUMAN',
         app_sequence=['instruction','quiz','practise','experiment_human','questionnaire','Result_payoff'],
         num_demo_participants=3,
+        AI = False
     ),
     dict(
         name='AI',
         app_sequence=['instruction','quiz','practise','experiment_AI','questionnaire','Result_payoff'],
-        num_demo_participants=3,
+        num_demo_participants=1,
         AI = True
     ),
 ]
@@ -59,6 +63,9 @@ PARTICIPANT_FIELDS = ['Guess_set']
 
 SESSION_FIELDS = []
 
+
+
+#------------------------------------------------#
 Maxround = 3
 #Real Result
 REAL_RESULT = [1,2,3,4,5,6,7,8,9,10,
@@ -67,11 +74,16 @@ REAL_RESULT = [1,2,3,4,5,6,7,8,9,10,
                 31,32,33,34,35,36,37,38,39,40,
                 41,42,43,44,45]
 #AI_reference
-AI_REF = [1,2,3,4,5,6,7,8,9,10,
-                11,12,13,14,15,16,17,18,19,20,
-                21,22,23,24,25,26,27,28,29,30,
-                31,32,33,34,35,36,37,38,39,40,
-                41,42,43,44,45]
+AI_REF_SET = [45,44,43,42,41,
+            40,39,38,37,36,35,34,33,32,31,
+            30,29,28,27,26,25,24,23,22,21,
+            20,19,18,17,16,15,14,13,12,11,
+            10,9,8,7,6,5,4,3,2,1]
+#------------------------------------------------#
+
+
+
+
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans

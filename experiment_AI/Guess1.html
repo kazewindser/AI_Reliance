@@ -1,0 +1,34 @@
+{{ block title }}
+        <p><center><strong>Round {{ player.round_number }}</strong></center></p>
+{{ endblock }}
+{{ block content }}
+
+<p>30秒内にこのニュースの真実性を推測してください：</p>
+<center><strong>1回目の推測:</strong>
+<div class="mb-3 _formfield">
+        <label class="col-form-label" for="id_guess_1">Please pick a number from 0 to 100:</label>
+        <div class="controls">
+            <input type="number" class="form-control" inputmode="" id="id_guess_1" max="100" min="0" name="guess_1" required="" value="">
+        </div>
+        <div style="display:none;">
+            <input type="number" id="id_guess_1_check" name="guess_1_check" value="999">
+        </div>
+</div>
+{# {{ formfields }} #}
+</center>
+<p><strong>30秒内に答えがない場合、この段階の推測は<font color="red">「無効推測：N」</font>となります</strong></p>
+  
+    {{ next_button }}
+
+{{ endblock }}
+
+{{ block script }}
+
+<script>
+    const elem = document.getElementById("id_guess_1");
+    elem.addEventListener('input', () => {
+        document.getElementById("id_guess_1_check").value="1";
+    });
+</script>
+
+{{ endblock }}

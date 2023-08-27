@@ -1,0 +1,31 @@
+
+<head>
+    <style>
+        /* 设置框的样式 */
+        #myBox {
+            border: 2px solid black; /* 边框为1像素黑色实线 */
+            padding: 10px; /* 内边距为10像素 */
+            background-color: #E6E6E9; 
+            margin: 0 auto; /* 居中 */
+        }
+    </style>
+</head>
+
+
+    {{ if player.round_number == 1 }}
+        <!-- creat a box -->
+        <div id="myBox">
+            <center>
+            <img src="https://i.imgur.com/qNFgl7s.png" title="source: imgur.com" /></center>
+        </div>
+    {{ elif player.round_number == 2 }}
+        <div id="myBox">
+            <center>
+            <img src="https://i.imgur.com/qNFgl7s.png" title="source: imgur.com" /></center>
+        </div>
+    {{ elif player.round_number == 3 }}
+        <div id="myBox">
+            <center>
+            <img src="https://i.imgur.com/qNFgl7s.png" title="source: imgur.com" /></center>
+        </div>
+    {{ endif }}

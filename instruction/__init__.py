@@ -11,6 +11,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     SLIDE_HUMAN = '../_templates/global/Slide_human.html'
+    SLIDE_AI = '../_templates/global/Slide_AI.html'
 
 class Subsession(BaseSubsession):
     pass
@@ -26,7 +27,12 @@ class Player(BasePlayer):
 
 # PAGES
 class Instruction(Page):
-    pass
+    def vars_for_template(player: Player):
+        inAI = player.session.config['AI']
+        return dict(
+        inAI = inAI
+    )
+
 
 
 page_sequence = [Instruction]
