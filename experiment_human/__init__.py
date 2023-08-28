@@ -89,7 +89,7 @@ class Round_1(Page):
         return player.round_number == 1
 
 class News(Page):
-    timeout_seconds = 1
+    timeout_seconds = 5
 
 class Guess1(Page):
     timeout_seconds = 10
