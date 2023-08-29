@@ -59,7 +59,7 @@ class p_Start(Page):
     timeout_seconds = 1
 
 class p_News(Page):
-    timeout_seconds = 3
+    timeout_seconds = 10
 
 class p_Guess1(Page):
     timeout_seconds = 10

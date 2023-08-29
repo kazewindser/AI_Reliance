@@ -73,7 +73,7 @@ class Round_1(Page):
         return player.round_number == 1
 
 class News(Page):
-    timeout_seconds = 1
+    timeout_seconds = 5
 
 class Guess1(Page):
     timeout_seconds = 10
@@ -91,7 +91,7 @@ class Wait(WaitPage):
     pass
 
 class Reference(Page):
-    timeout_seconds = 5
+    timeout_seconds = 10
     @staticmethod
     def vars_for_template(player: Player):
         numq = player.round_number-1
