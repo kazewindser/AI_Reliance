@@ -21,7 +21,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='quiz_test',
-        app_sequence=['quiz','practise'],
+        app_sequence=['Quiz_human','Quiz_AI','practise'],
         num_demo_participants=1,
     ),
     dict(
@@ -37,13 +37,13 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='HUMAN',
-        app_sequence=['instruction','quiz','practise','experiment_human','questionnaire','Result_payoff'],
+        app_sequence=['instruction','Quiz_human','practise','experiment_human','questionnaire','Result_payoff'],
         num_demo_participants=3,
         AI = False
     ),
     dict(
         name='AI',
-        app_sequence=['instruction','quiz','practise','experiment_AI','questionnaire','Result_payoff'],
+        app_sequence=['instruction','Quiz_AI','practise','experiment_AI','questionnaire','Result_payoff'],
         num_demo_participants=1,
         AI = True
     ),
@@ -66,7 +66,9 @@ SESSION_FIELDS = []
 
 
 #------------------------------------------------#
-Maxround = 45
+Maxround = 5
+
+
 #Real Result
 REAL_RESULT = [0,26,0,100,0,37,43,100,0,100,
                 100,0,0,32,64,87,78,0,0,82,

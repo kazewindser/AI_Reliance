@@ -1,0 +1,24 @@
+{{ block title }}
+    {{ Lexicon.quiz }}
+    5問中{{ numq }}問
+{{ endblock }}
+
+{{ block content }}
+    <div class="mb-3">
+            間違っています。
+        <br>
+    </div>
+
+    {{ if numq < 5}}
+        <div class="card bg-light mb-3">
+            <div class="card-body">
+            {{ for c in comms}}
+                {{ c }}<br>
+            {{ endfor }}
+            </div>
+        </div>
+    {{ endif }}
+
+    <button class="btn-primary btn">もう一度</button>
+
+{{ endblock }}

@@ -8,9 +8,9 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'quiz'
+    NAME_IN_URL = 'quiz_human'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 100
+    NUM_ROUNDS = 20
     # クイズ終了後他の参加者を待つときはTrueとする
     WAIT = True
 

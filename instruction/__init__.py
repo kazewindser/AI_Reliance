@@ -27,6 +27,7 @@ class Player(BasePlayer):
 
 # PAGES
 class Instruction(Page):
+    @staticmethod
     def vars_for_template(player: Player):
         inAI = player.session.config['AI']
         return dict(

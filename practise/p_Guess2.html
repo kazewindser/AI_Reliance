@@ -7,7 +7,7 @@
 {{if player.guess_1_check == 1}}
         <b>{{ player.guess_1 }}</b>
 {{ else }}
-        <b>「無効推測：X」</b>
+        <b>「無効推測：N」</b>
 {{ endif }}
 
 <p> </p>
@@ -35,7 +35,7 @@ ChatGPTの推測結果は：<b>58</b>
 </div>
 {# {{ formfields }} #}
 </center>
-<p><strong>30秒内に答えがない場合、この段階の推測は<font color="red">「無効推測：X」</font>となります</strong></p>
+<p><strong>30秒内に答えがない場合、この段階の推測は<font color="red">「無効推測：N」</font>となります</strong></p>
     {{ next_button }}
 {{ endblock }}
 

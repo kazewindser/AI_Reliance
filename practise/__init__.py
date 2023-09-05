@@ -56,7 +56,8 @@ def Refer_generate(player:Player):
 
 # PAGES
 class p_Start(Page):
-    timeout_seconds = 1
+    # timeout_seconds = 1
+    pass
 
 class p_News(Page):
     timeout_seconds = 10

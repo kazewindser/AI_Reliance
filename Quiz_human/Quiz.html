@@ -1,0 +1,13 @@
+{{ block title }}
+    {{ Lexicon.quiz }}
+    (
+            5問中{{ numq }}問
+    )
+{{ endblock }}
+{{ block content }}
+
+    {{ formfields }}
+    {{ next_button }}
+
+    {{ include C.HIDDEN_SLIDE_HUMAN }}
+{{ endblock }}
