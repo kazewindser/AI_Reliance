@@ -1,0 +1,48 @@
+{{ block title }}
+    <p><center><strong>練習</strong></center></p>
+{{ endblock }}
+
+{{ block content }}
+<head>
+    <style>
+        /* 设置框的样式 */
+        #myBox {
+            border: 2px solid black; /* 边框为1像素黑色实线 */
+            padding: 10px; /* 内边距为10像素 */
+            background-color: #E6E6E9; 
+            margin: 0 auto; /* 居中 */
+        }
+    </style>
+</head>
+{{ if inAI == True }}
+    <body>
+        <!-- 创建一个框 -->
+            <div id="myBox">
+               <center><img src="https://i.imgur.com/qNFgl7s.png" title="source: imgur.com" /></center>
+            </div>
+{{ else }}
+    <body>
+        <!-- 创建一个框 -->
+            <div id="myBox">
+                <p>共同通信、朝日新聞によると、21日に放送予定だった「17歳の夏物語」の脚本・演出を担当する東野幸治とのコラボが実現した。2018年中に「17歳の夏物語」で脚本を執筆することが決定していたが、東野は自身が「17歳の夏物語」を脚本した際に、「少年」であるとの誤解を与えられ、急遽、本作で脚本が依頼された。プロデューサーの古谷徹は「『17歳の夏物語』は、僕が脚本したものではあるけれども、それとは別に脚本家が別で考えているので、これは僕の勝手です」と発言した。21日の放送後、古谷は、「この作品で『17歳の夏物語』とは別に、古谷さんの『17歳の秋』でも脚本することが決まっているので、そういう関係でちょうどよかったです」とコメントした。</p>
+            </div>
+{{ endif}}
+
+<p> </p>
+<p>
+    <b>このニュースに対して、
+    {{ if inAI == True }}
+        ChatGPTの推測結果は：</b> 
+        <p> </p>
+        <font size=6><center><strong>55</strong></center></font>
+    {{ else }}
+        今日の実験の参加者の中からランダムに選ばれた他の一人の推測結果は：</b>
+        <p> </p>
+        <font size=6><center><strong>{{ Refer }}</strong></center></font>
+    {{ endif }}
+</p>
+<p> </p>
+
+{{ endblock }}
+
+

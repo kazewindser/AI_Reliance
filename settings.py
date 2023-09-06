@@ -36,6 +36,12 @@ SESSION_CONFIGS = [
         AI = True
     ),
     dict(
+        name='Slider_test',
+        app_sequence=['slider_test'],
+        num_demo_participants=1,
+        AI = True
+    ),
+    dict(
         name='HUMAN',
         app_sequence=['instruction','Quiz_human','practise','experiment_human','questionnaire','Result_payoff'],
         num_demo_participants=3,

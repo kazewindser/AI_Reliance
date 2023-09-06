@@ -146,4 +146,4 @@ class Results(Page):
     pass
 
 
-page_sequence = [Start, Quiz,Incorrect,Correct, Wait]
+page_sequence = [Quiz,Incorrect,Correct, Wait]
