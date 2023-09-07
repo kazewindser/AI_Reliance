@@ -2,44 +2,67 @@
         <p><center><strong>Round {{ player.round_number}}</strong></center></p>
 {{ endblock }}
 {{ block content }}
+
+{{ include C.SLIDER_STYLE}}
+
+
 あなたの<b>1回目</b>の推測結果は：
 {{if player.guess_1_check == 1}}
         <b>{{ player.guess_1 }}</b>
 {{ else }}
         <b>「無効推測：N」</b>
 {{ endif }}
+
 <p> </p>
 今日の実験の参加者の中からランダムに選ばれた他の一人の推測結果は：<b>{{ player.random_reference }}</b>
+<p> </p>
+<p> </p>
+<p><b>30秒内にこのニュースの正しさを再度推測してください。</b></p>
+<p> </p>
+<p> </p>
+<p><font color="blue">青いバー</font>をクリックして、スライダーを表示してください。</p>
+<p> </p>
 <p> </p>
 <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=6>
 <p> </p>
 
-<p>30秒内にこのニュースの正しさを再度推測してください：</p>
-<center><strong>2回目の推測:</strong>
+<center><strong>2回目の推測:</strong></center>
 
-<div class="mb-3 _formfield">
-        <label class="col-form-label" for="id_guess_2">Please pick a number from 0 to 100:</label>
-        <div class="controls">
-            <input type="number" class="form-control" inputmode="" id="id_guess_2" max="100" min="0" name="guess_2" required="" value="">
-        </div>
-        <div style="display:none;">
-            <input type="number" id="id_guess_2_check" name="guess_2_check" value="999">
-        </div>
-</div>
-{# {{ formfields }} #}
-</center>
+<!-- 表单template -->
+  {{ formfield_errors 'guess_2' }}
+    <input type="hidden" name="guess_2_check" id="id_guess_2_check" value="{{ player.guess_2_check }}">
+<!-- 表单template -->
+
+<!-- slider's location -->
+    <div id="sliders_here"></div>
+
+<!-- input the slider and define the parameter when users dont click -->
+    <script src="{{ static 'mgslider.js' }}"></script>
+    <!-- the function is the prototype function, it use the reveal() define in mgslider.js -->
+    <script>
+    mgslider.prototype.handleBlueBarClick = function() {
+        document.getElementById("id_guess_2_check").value = "1";
+        this.reveal();  // Call the original reveal function
+    };
+    </script>
+<!-- do not change the sequence of the two -->
+
+<!-- define the property of the slider -->
+    <script>
+        $(document).ready(function (event) {
+            slider = new mgslider("guess_2", 0, 100, 1);
+            slider.print(document.getElementById("sliders_here"));
+        });
+    </script>
+
+<!-- boundline -->
+<p> </p>
+<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=6>
+<p> </p>
+
+
 <p><strong>30秒内に答えがない場合、この段階の推測は<font color="red">「無効推測：N」</font>となります</strong></p>
     {{ next_button }}
-{{ endblock }}
-
-
-{{ block script }}
-
-<script>
-    const elem = document.getElementById("id_guess_2");
-    elem.addEventListener('input', () => {
-        document.getElementById("id_guess_2_check").value="1";
-    });
-</script>
 
 {{ endblock }}
+

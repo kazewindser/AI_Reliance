@@ -7,9 +7,11 @@ Your app description
 """
 
 class C(BaseConstants):
-    NAME_IN_URL = 'practise'
+    NAME_IN_URL = 'slider_test'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
+
+    SLIDER_STYLE = '../_static/global/mgslider_style.html'
 
 
 class Subsession(BaseSubsession):
@@ -21,18 +23,15 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    guess_1 = models.IntegerField(
-        min=0, max=100, label="Please pick a number from 0 to 100:"
-    )
-    guess_2 = models.IntegerField(
-        min=0, max=100, label="Please pick a number from 0 to 100:",
-    )
+    guess_1 = models.IntegerField()
+    guess_2 = models.IntegerField()
     random_reference = models.IntegerField()
     timeout_1 = models.BooleanField(initial=False)
     timeout_2 = models.BooleanField(initial=False)
 
-    guess_1_check = models.IntegerField()
-    guess_2_check = models.IntegerField()
+
+    guess_1_check = models.IntegerField(initial=999)
+    guess_2_check = models.IntegerField(initial=999)
 
 
 # Functions
@@ -60,12 +59,12 @@ class p_Start(Page):
     pass
 
 class p_News(Page):
-    timeout_seconds = 10
+    timeout_seconds = 3
 
 class p_Guess1(Page):
     timeout_seconds = 10
     form_model = 'player'
-    form_fields = ['guess_1', 'guess_1_check']
+    form_fields = ['guess_1','guess_1_check']
     @staticmethod
     def before_next_page(player, timeout_happened):
         if timeout_happened:

@@ -15,6 +15,8 @@ class C(BaseConstants):
 
     NEWS = '../_templates/global/News_template.html'
 
+    SLIDER_STYLE = '../_static/global/mgslider_style.html'
+
 
 class Subsession(BaseSubsession):
     pass
@@ -35,8 +37,8 @@ class Player(BasePlayer):
     timeout_1 = models.BooleanField(initial=False)
     timeout_2 = models.BooleanField(initial=False)
 
-    guess_1_check = models.IntegerField()
-    guess_2_check = models.IntegerField()
+    guess_1_check = models.IntegerField(initial=999)
+    guess_2_check = models.IntegerField(initial=999)
 
 
 # Functions
