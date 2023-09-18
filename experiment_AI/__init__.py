@@ -75,10 +75,10 @@ class Round_1(Page):
         return player.round_number == 1
 
 class News(Page):
-    timeout_seconds = 5
+    timeout_seconds = 30
 
 class Guess1(Page):
-    timeout_seconds = 10
+    timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_1', 'guess_1_check']
     @staticmethod
@@ -104,7 +104,7 @@ class Reference(Page):
     )
 
 class Guess2(Page):
-    timeout_seconds = 10
+    timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_2','guess_2_check']
     @staticmethod
