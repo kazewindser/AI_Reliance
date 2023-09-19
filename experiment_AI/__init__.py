@@ -88,7 +88,6 @@ class Guess1(Page):
             # because otherwise they may be left null.
             player.timeout_1 = True
 
-#此页面必要因为需要提取reference
 class Wait(WaitPage):
     pass
 
@@ -137,7 +136,7 @@ class Finish_Task(Page):
         return player.round_number == Maxround
 
 
-page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Wait2, Finish_Round, Finish_Task]
+page_sequence = [ Round_1, News, Guess1, Reference, Guess2, Finish_Round, Finish_Task]
 
 
 

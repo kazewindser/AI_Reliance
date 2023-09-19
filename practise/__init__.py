@@ -59,10 +59,10 @@ class p_Start(Page):
     pass
 
 class p_News(Page):
-    timeout_seconds = 3
+    timeout_seconds = 30
 
 class p_Guess1(Page):
-    timeout_seconds = 10
+    timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_1','guess_1_check']
     @staticmethod
@@ -92,7 +92,7 @@ class p_Reference(Page):
     )
 
 class p_Guess2(Page):
-    timeout_seconds = 10
+    timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_2','guess_2_check']
     @staticmethod
