@@ -93,7 +93,7 @@ ROOMS = [
     dict(
         name='Pilot1',
         display_name='Pilot_Sep_21',
-        participant_label_file='pilot_Sep_21.txt',
+        participant_label_file='_rooms/pilot.txt',
         use_secure_urls=True
     ),]
 
