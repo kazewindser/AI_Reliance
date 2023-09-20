@@ -89,7 +89,13 @@ AI_REF_SET = [21,18,38,91,13,
             5,12,65,0,100,85,16,92,28,95]
 #------------------------------------------------#
 
-
+ROOMS = [
+    dict(
+        name='Pilot1',
+        display_name='Pilot_Sep_21',
+        participant_label_file='pilot_Sep_21.txt',
+        use_secure_urls=True
+    ),]
 
 
 
