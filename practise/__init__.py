@@ -59,10 +59,11 @@ class p_Start(Page):
     pass
 
 class p_News(Page):
-    timeout_seconds = 30
+    # timeout_seconds = 30
+    pass
 
 class p_Guess1(Page):
-    timeout_seconds = 30
+    # timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_1','guess_1_check']
     @staticmethod
@@ -77,7 +78,7 @@ class Wait(WaitPage):
     pass
 
 class p_Reference(Page):
-    timeout_seconds = 10
+    # timeout_seconds = 10
     @staticmethod
     def vars_for_template(player: Player):
         inAI = player.session.config['AI']
@@ -92,7 +93,7 @@ class p_Reference(Page):
     )
 
 class p_Guess2(Page):
-    timeout_seconds = 30
+    # timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_2','guess_2_check']
     @staticmethod
