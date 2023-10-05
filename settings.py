@@ -32,8 +32,8 @@ SESSION_CONFIGS = [
     dict(
         name='practise_test',
         app_sequence=['practise'],
-        num_demo_participants=1,
-        AI = True
+        num_demo_participants=2,
+        AI = False
     ),
     dict(
         name='noslider',
