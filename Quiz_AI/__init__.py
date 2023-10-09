@@ -48,7 +48,7 @@ for k, v in C.corrects.items():
         v['field'] = models.BooleanField
     else:
         v['field'] = models.IntegerField
-    setattr(    # k = models.IntegerField(choices=...)と等価
+    setattr(    # k = models.IntegerField(choices=...)と等価。   #使用 setattr 函数为 Player 类动态地添加属性
         Player,
         k,
         v['field'](
