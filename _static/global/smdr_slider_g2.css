@@ -82,6 +82,7 @@ input.nonanchoring::-moz-range-thumb {
     z-index: 1 !important;
 }*/
 
+
 .grid span.boldgrid {
     width: 3px;
     height: 20px; /* Adjusted height */
@@ -110,6 +111,52 @@ input.nonanchoring::-moz-range-thumb {
     right: 15px;
 }
 /*the text at start and end */
+
+/* Base class for the dot */
+.dot {
+    pointer-events: none;
+    z-index: 10;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+/* Color and specific styles for guess_1 dot */
+.dot-guess-1 {
+    background-color: blue;
+}
+
+/* Color and specific styles for ref dot */
+.dot-ref {
+    background-color: red;
+}
+
+.slider-container {
+    position: relative;
+}
+
+.dot {
+    pointer-events: none;
+    z-index: 95;
+}
+
+.form-range {
+    position: relative;
+    z-index: 2;
+}
+
+/*始终显示slidr-thumb*/
+.form-range::-webkit-slider-thumb {
+    opacity: 1 !important;
+}
+
+.form-range::-moz-range-thumb {
+    opacity: 1 !important;
+}
 
 
 

@@ -15,13 +15,31 @@
         .mgslider-limit, .mgslider-value_max {
             font-variant-numeric: tabular-nums;
         }
-        .mgslider-before {
+/*        .mgslider-before {
             height: 16px;
             width: 100%;
             background: #1e5bff;
             display: block;
             margin: 0 auto;
+        }*/
+
+        input[type=range]::-webkit-slider-thumb {
+            opacity: 0;  /* Make the thumb transparent by default */
         }
+
+        input[type=range]:focus::-webkit-slider-thumb {
+            opacity: 1;  /* Make the thumb visible on focus */
+        }
+
+        input[type=range]::-moz-range-thumb {
+            opacity: 0;
+        }
+
+        input[type=range]:focus::-moz-range-thumb {
+            opacity: 1;
+        }
+
+
         .mgslider-feedback {
             -webkit-user-select: none;
             -ms-user-select: none;

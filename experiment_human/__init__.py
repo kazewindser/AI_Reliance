@@ -15,9 +15,6 @@ class C(BaseConstants):
 
     NEWS = '../_templates/global/News_template.html'
 
-    SLIDER_STYLE = '../_static/global/mgslider_style.html'
-
-
 class Subsession(BaseSubsession):
     pass
 
@@ -28,17 +25,12 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     guess_1 = models.IntegerField(
-        min=0, max=100, label="Please pick a number from 0 to 100:"
+        min=0, max=100, initial = -1,
     )
     guess_2 = models.IntegerField(
-        min=0, max=100, label="Please pick a number from 0 to 100:",
+        min=0, max=100, initial = -1,
     )
     random_reference = models.IntegerField()
-    timeout_1 = models.BooleanField(initial=False)
-    timeout_2 = models.BooleanField(initial=False)
-
-    guess_1_check = models.IntegerField(initial=999)
-    guess_2_check = models.IntegerField(initial=999)
 
 
 # Functions
@@ -47,9 +39,12 @@ class Player(BasePlayer):
 def Refer_generate(player:Player):
     players = player.get_others_in_group()
     guess1_s = []
+
     for p in players:
-        if p.guess_1_check == 1:
-            guess1_s.append(p.guess_1)
+        # if p.guess_1_check == 1:
+        #     guess1_s.append(p.guess_1)
+        guess1_s.append(p.guess_1)
+        
     if guess1_s == []:
         Refer = []
         Refer.append(random.randint(1,100))
@@ -61,23 +56,30 @@ def Refer_generate(player:Player):
 #Save guess data to participant.Guess_set
  ## every round, generate a list to save the 2 guess and reference.
     ### then save the list_per_round into the participant.Guess_set（list）
+# def Save_guess(player:Player):
+
+#         guess_per_round    = []
+
+#         if player.guess_1_check == 1:
+#             guess_per_round.append(player.guess_1)
+#         else:
+#             guess_per_round.append('N')
+
+#         if player.guess_2_check == 1:
+#             guess_per_round.append(player.guess_2)
+#         else:
+#             guess_per_round.append('N')
+ 
+#         guess_per_round.append(player.random_reference)
+#         player.participant.Guess_set[player.round_number-1] = guess_per_round
 def Save_guess(player:Player):
 
         guess_per_round    = []
 
-        if player.guess_1_check == 1:
-            guess_per_round.append(player.guess_1)
-        else:
-            guess_per_round.append('N')
-
-        if player.guess_2_check == 1:
-            guess_per_round.append(player.guess_2)
-        else:
-            guess_per_round.append('N')
- 
+        guess_per_round.append(player.guess_1)
+        guess_per_round.append(player.guess_2)
         guess_per_round.append(player.random_reference)
-        player.participant.Guess_set[player.round_number-1] = guess_per_round
-      
+        player.participant.Guess_set[player.round_number-1] = guess_per_round      
 
 
 
@@ -97,13 +99,7 @@ class News(Page):
 class Guess1(Page):
     # timeout_seconds = 30
     form_model = 'player'
-    form_fields = ['guess_1', 'guess_1_check']
-    @staticmethod
-    def before_next_page(player, timeout_happened):
-        if timeout_happened:
-            # you may want to fill a default value for any form fields,
-            # because otherwise they may be left null.
-            player.timeout_1 = True
+    form_fields = ['guess_1']
 
 
 class Wait(WaitPage):
@@ -123,13 +119,7 @@ class Reference(Page):
 class Guess2(Page):
     # timeout_seconds = 30
     form_model = 'player'
-    form_fields = ['guess_2','guess_2_check']
-    @staticmethod
-    def before_next_page(player, timeout_happened):
-        if timeout_happened:
-            # you may want to fill a default value for any form fields,
-            # because otherwise they may be left null.
-            player.timeout_2 = True
+    form_fields = ['guess_2']
 
 class Wait2(WaitPage):
     pass

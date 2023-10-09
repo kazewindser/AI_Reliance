@@ -3,20 +3,16 @@
 {{ endblock }}
 {{ block content }}
 
-{{ include C.SLIDER_STYLE}}
-
-あなたの<b>1回目</b>の推測結果は：
-{{if player.guess_1_check == 1}}
-        <b>{{ player.guess_1 }}</b>
-{{ else }}
-        <b>「無効推測：N」</b>
-{{ endif }}
+あなたの<font color="blue" style="opacity: 0.5;"><b>1回目の推測結果</b></font>は：
+<font color="blue" style="opacity: 0.5;"><b id="id_guess_1">{{ player.guess_1 }}</b></font>
 
 <p> </p>
 {{ if inAI == True }}
-ChatGPTの推測結果は：<b>58</b>
+    <font color="red" style="opacity: 0.5;"><b>ChatGPTの推測結果</b></font>は：
+    <font color="red" style="opacity: 0.5;"><b id="id_ref">55</b></font>
 {{ else }}
-    今日の実験の参加者の中からランダムに選ばれた他の一人の推測結果は：<b>{{ player.random_reference }}</b>
+    今日の実験の参加者の中からランダムに<font color="red" style="opacity: 0.5;"><b>選ばれた他の一人の推測結果</b></font>は：
+    <font color="red" style="opacity: 0.5;"><b id="id_ref">{{ player.random_reference }}</b></font>
 {{ endif }}
 <p> </p>
 <p> </p>
@@ -24,7 +20,7 @@ ChatGPTの推測結果は：<b>58</b>
 <p><b>このニュースの正しさを再度推測してください。</b></p>
 <p> </p>
 <p> </p>
-<p><font color="blue">青いバー</font>をクリックして、スライダーを表示してください。</p>
+
 <p> </p>
 <p> </p>
 <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=6>
@@ -34,46 +30,116 @@ ChatGPTの推測結果は：<b>58</b>
 <center><strong>2回目の推測:</strong></center>
 
 
-<!-- 表单template -->
-  {{ formfield_errors 'guess_2' }}
-    <input type="hidden" name="guess_2_check" id="id_guess_2_check" value="{{ player.guess_2_check }}">
-<!-- 表单template -->
+<!-- slider input -->
+<link rel="stylesheet" href="{% static 'global/smdr_slider_g2.css' %}">
 
-<!-- slider's location -->
-    <div id="sliders_here"></div>
+<style>
+    #scale_num{
+        width: 100%;
+    }
+</style>
+<!-- slider input -->
 
-<!-- input the slider and define the parameter when users dont click -->
-    <script src="{{ static 'mgslider.js' }}"></script>
-    <!-- the function is the prototype function, it use the reveal() define in mgslider.js -->
-    <script>
-    mgslider.prototype.handleBlueBarClick = function() {
-        document.getElementById("id_guess_2_check").value = "1";
-        this.reveal();  // Call the original reveal function
-    };
-    </script>
-<!-- do not change the sequence of the two -->
+<!-- field -->
+<div class="card bg-light mx-auto p-5 my-2">
+    <div> 
+            現在の推測: <b id="current_input">?</b>
+    </div>
+        <label for="slider" class="form-label"></label>
 
-<!-- define the property of the slider -->
-    <script>
-        $(document).ready(function (event) {
-            slider = new mgslider("guess_2", 0, 100, 1);
-            slider.print(document.getElementById("sliders_here"));
+    <div class="slider-container" style="position: relative;">
+        <div class="dot dot-guess-1" id="dot-guess-1"></div>
+        <div class="dot dot-ref" id="dot-ref"></div>
+        <input type="range" name='guess_2' class="form-range nonanchoring" min="0" list="scale" id="slider">
+    </div>
+
+        <div class="grid" id="scale_grid"></div>
+        <div class="d-flex justify-content-between" id="scale_num"></div>
+</div>
+<!-- field -->
+
+<!-- slider_setting -->
+<script>
+    // 最大値と刻み幅の設定
+    const maxP = js_vars.maxP;
+    const step = js_vars.step;
+    const slider = document.getElementById('slider');
+    slider.max = 100;
+    slider.step = 1;
+    slider.value = 0;
+
+    // only add grip at start and end
+    var gridspan_start = document.createElement('span');
+    gridspan_start.classList.add("boldgrid");
+    scale_grid.append(gridspan_start);
+
+    var gridspan_end = document.createElement('span');
+    gridspan_end.classList.add("boldgrid");
+    scale_grid.append(gridspan_end);
+
+    // WTPの表示
+    function render (output, value) {
+        output.innerHTML = value;
+    }
+    const input = document.querySelector('input');
+    const output = document.getElementById('current_input');
+
+    input.addEventListener('input', function (e) {
+        render(output, e.target.value)
+    }, false)
+
+    $(document).ready(function () {
+        $('input.nonanchoring').on('click', function () {
+            $('input.nonanchoring').addClass('nonanchoring_thumb');
+            render(output, input.value);
         });
-    </script>
+    });
 
+    // present 1st guess and Reference
+   document.addEventListener("DOMContentLoaded", function() {
+        var slider = document.querySelector(".form-range");
+        var dotGuess1 = document.getElementById("dot-guess-1");
+        var dotRef = document.getElementById("dot-ref");
+        
+        var guess_1_element = document.getElementById("id_guess_1");
+        var guess_1 = parseInt(guess_1_element.innerText, 10);
+        
+        var ref_element = document.getElementById("id_ref");
+        var ref = parseInt(ref_element.innerText, 10);
+
+        function updateDotsPosition() {
+            var offset = -1; 
+            var dotWidth = 20;
+            var guess1Position = (guess_1 / slider.max) * slider.offsetWidth- (dotWidth / 2)+ offset;;
+            var refPosition = (ref / slider.max) * slider.offsetWidth- (dotWidth / 2)+ offset;;
+
+            dotGuess1.style.left = guess1Position + "px";
+            dotRef.style.left = refPosition + "px";
+        }
+
+        // Update dots position initially and also when window resizes
+        updateDotsPosition();
+        window.addEventListener("resize", updateDotsPosition);
+    });
+
+
+    document.getElementById("slider").addEventListener("input", function() {
+        document.getElementById("nextButton").disabled = false;
+    });
+</script>
+<!-- slider_setting -->
+
+    
 <!-- boundline -->
 <p> </p>
 <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=6>
 <p> </p>
 
 
-
-
-<!-- <p><strong>30秒内に答えがない場合、この段階の推測は<font color="red">「無効推測：N」</font>となります</strong></p> -->
 <p><b>答えを出しましたら、<font color="blue">「次へ」</font>を押してください。</b></p>
 
 <p style="text-align: right;">
-  <button class="otree-btn-next btn btn-primary">次へ</button>
+  <button class="otree-btn-next btn btn-primary" id="nextButton" disabled >次へ</button>
 </p>
 
 {{ endblock }}
