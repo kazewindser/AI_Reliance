@@ -1,0 +1,42 @@
+{{ block title }}
+    <p><center><strong>Round {{ player.round_number }}</strong></center></p>
+{{ endblock }}
+
+{{ block content }}
+<p> </p>
+
+<head>
+    <style>
+        /* 设置框的样式 */
+        #myBox {
+            border: 2px solid black; /* 边框为1像素黑色实线 */
+            padding: 10px; /* 内边距为10像素 */
+            background-color: #E6E6E9; 
+            margin: 0 auto; /* 居中 */
+        }
+    </style>
+</head>
+
+<!-- creat a box -->
+<div id="myBox">
+    <center>
+        <img src="{{ static image_path }}"/>
+    </center>
+</div>
+
+
+<p> </p>
+<p>
+    <b>このニュースに対して、ChatGPTの推測結果({{ref_id}})は：</b>
+    <p> </p>
+    <font size=6><center><strong>{{ Refer }}</strong></center></font>
+</p>
+<p> </p>
+  
+<p style="text-align: right;">
+  <button class="otree-btn-next btn btn-primary">次へ</button>
+</p>
+
+{{ endblock }}
+
+

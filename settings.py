@@ -1,4 +1,7 @@
 from os import environ
+import os
+os.environ["NUMEXPR_MAX_THREADS"] = "8"
+import pandas as pd
 
 SESSION_CONFIGS = [
     dict(
@@ -10,6 +13,12 @@ SESSION_CONFIGS = [
     dict(
         name='experiment_AI_test',
         app_sequence=['experiment_AI','Result_payoff'],
+        num_demo_participants=1,
+        AI = True
+    ),
+    dict(
+        name='multi_ref_AI_test',
+        app_sequence=['AI_multi_ref','Result_payoff'],
         num_demo_participants=1,
         AI = True
     ),
@@ -87,6 +96,10 @@ AI_REF_SET = [21,18,38,91,13,
             71,73,26,27,72,65,35,70,38,24,
             42,0,85,95,75,27,95,23,15,36,
             5,12,65,0,100,85,16,92,28,95]
+
+#Multi-AI_reference
+file = '_static/AI_refs_test.xlsx'
+MULTI_AI_REF_SET = pd.read_excel(file)
 #------------------------------------------------#
 
 ROOMS = [
