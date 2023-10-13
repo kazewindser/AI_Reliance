@@ -1,6 +1,6 @@
 from otree.api import *
 from settings import Maxround, AI_REF_SET, MULTI_AI_REF_SET
-import random
+import random, time
 
 doc = """
 Your app description
@@ -33,6 +33,15 @@ class Player(BasePlayer):
     AI_ref_id = models.IntegerField()
     AI_reference = models.IntegerField()
 
+    #parameter to count time
+    time_readnews = models.IntegerField()  
+    time_guess_1 = models.IntegerField()  
+    # time_readref = models.IntegerField()  
+    time_guess_2 = models.IntegerField()
+
+    start = models.FloatField()
+    end = models.FloatField()  
+
 # Functions
 # Find a random reference
 
@@ -48,7 +57,23 @@ def Save_guess(player:Player):
     guess_per_round    = []
     guess_per_round.append(player.guess_1)
     guess_per_round.append(player.guess_2)
-    player.participant.Guess_set[player.round_number-1] = guess_per_round      
+    player.participant.Guess_set[player.round_number-1] = guess_per_round
+
+def custom_export(players):
+    # header row
+    yield ['session', 'participant_code', 'label', 'round_number', 'id_in_group',
+    'guess_1','AI_ref','guess_2',
+    'time_readnews','time_guess_1','time_guess_2']
+
+    for p in players:
+        participant = p.participant
+        session = p.session
+        yield [
+        session.code, participant.code, participant.label, p.round_number, p.id_in_group, 
+        p.guess_1, p.AI_reference, p.guess_2,
+        p.time_readnews, p.time_guess_1, p.time_guess_2
+        ]
+
 
 
 
@@ -60,23 +85,37 @@ class Round_1(Page):
         if player.round_number == 1:
             player.participant.Guess_set = ['NN']*45   #在一开始赋值总数据列表
         return player.round_number == 1
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.start = time.time()
 
 class News(Page):
     @staticmethod
     def is_displayed(player):
+        player.start = time.time()
         Gen_AIref(player)
-        return player.round_number < Maxround
+        return player.round_number <= Maxround
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.end = time.time()
+        player.time_readnews = int(player.end - player.start)
+        player.start = time.time()
     
 class Guess1(Page):
     # timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_1']
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.end = time.time()
+        player.time_guess_1= int(player.end - player.start)
+        player.start = time.time()
 
 class Wait(WaitPage):
     pass
 
 class Reference(Page):
-    # timeout_seconds = 10
+    timeout_seconds = 5
     @staticmethod
     def vars_for_template(player: Player):
         numq = player.round_number-1
@@ -87,11 +126,18 @@ class Reference(Page):
         ref_id = ref_id,
         image_path='AI_REF/{}/{}.png'.format(player.round_number,ref_id)
     )
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.start = time.time()
 
 class Guess2(Page):
     # timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_2']
+    def before_next_page(player: Player, timeout_happened):
+        player.end = time.time()
+        player.time_guess_2= int(player.end - player.start)
+        player.start = time.time()
 
 
 class Wait2(WaitPage):
@@ -109,6 +155,7 @@ class Finish_Round(Page):
         return dict(
         numq = numq
     )
+
 
 class Finish_Task(Page):
     @staticmethod

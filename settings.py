@@ -62,6 +62,12 @@ SESSION_CONFIGS = [
         num_demo_participants=1,
         AI = True
     ),
+    dict(
+        name='Multi_AI',
+        app_sequence=['instruction','Quiz_AI','practise','AI_multi_ref','questionnaire','Result_payoff'],
+        num_demo_participants=1,
+        AI = True
+    ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs

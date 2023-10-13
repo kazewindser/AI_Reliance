@@ -38,26 +38,20 @@ class Player(BasePlayer):
 #Save guess data to participant.Guess_set
  ## every round, generate a list to save the 2 guess and reference.
     ### then save the list_per_round into the participant.Guess_set（list）
-# def Save_guess(player:Player):
 
-#         guess_per_round    = []
-
-#         if player.guess_1_check == 1:
-#             guess_per_round.append(player.guess_1)
-#         else:
-#             guess_per_round.append('N')
-
-#         if player.guess_2_check == 1:
-#             guess_per_round.append(player.guess_2)
-#         else:
-#             guess_per_round.append('N')
- 
-#         player.participant.Guess_set[player.round_number-1] = guess_per_round
 def Save_guess(player:Player):
     guess_per_round    = []
     guess_per_round.append(player.guess_1)
     guess_per_round.append(player.guess_2)
     player.participant.Guess_set[player.round_number-1] = guess_per_round      
+
+def custom_export(players):
+    # header row
+    yield ['session', 'participant_code', 'round_number', 'id_in_group', 'payoff','guess_1','AI_ref','guess_2']
+    for p in players:
+        participant = p.participant
+        session = p.session
+        yield [session.code, participant.code, p.round_number, p.id_in_group, p.payoff, p.guess_1,p.AI_reference,P.guess_2]
 
 
 
@@ -83,7 +77,7 @@ class Wait(WaitPage):
     pass
 
 class Reference(Page):
-    # timeout_seconds = 10
+    timeout_seconds = 5
     @staticmethod
     def vars_for_template(player: Player):
         numq = player.round_number-1

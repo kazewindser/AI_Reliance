@@ -1,6 +1,6 @@
 from otree.api import *
 from settings import Maxround
-import random
+import random, time
 
 doc = """
 Your app description
@@ -32,6 +32,15 @@ class Player(BasePlayer):
     )
     random_reference = models.IntegerField()
 
+    #parameter to count time
+    time_readnews = models.IntegerField()  
+    time_guess_1 = models.IntegerField()  
+    # time_readref = models.IntegerField()  
+    time_guess_2 = models.IntegerField()
+
+    start = models.FloatField()
+    end = models.FloatField()  
+
 
 # Functions
 
@@ -53,25 +62,7 @@ def Refer_generate(player:Player):
 
     return Refer[0]
 
-#Save guess data to participant.Guess_set
- ## every round, generate a list to save the 2 guess and reference.
-    ### then save the list_per_round into the participant.Guess_set（list）
-# def Save_guess(player:Player):
 
-#         guess_per_round    = []
-
-#         if player.guess_1_check == 1:
-#             guess_per_round.append(player.guess_1)
-#         else:
-#             guess_per_round.append('N')
-
-#         if player.guess_2_check == 1:
-#             guess_per_round.append(player.guess_2)
-#         else:
-#             guess_per_round.append('N')
- 
-#         guess_per_round.append(player.random_reference)
-#         player.participant.Guess_set[player.round_number-1] = guess_per_round
 def Save_guess(player:Player):
 
         guess_per_round    = []
@@ -79,7 +70,20 @@ def Save_guess(player:Player):
         guess_per_round.append(player.guess_1)
         guess_per_round.append(player.guess_2)
         guess_per_round.append(player.random_reference)
-        player.participant.Guess_set[player.round_number-1] = guess_per_round      
+        player.participant.Guess_set[player.round_number-1] = guess_per_round
+
+def custom_export(players):
+    # header row
+    yield ['session', 'participant_code', 'label', 'round_number', 'id_in_group','guess_1','Human_ref','guess_2',
+    'time_readnews','time_guess_1','time_guess_2']
+    for p in players:
+        participant = p.participant
+        session = p.session
+        yield [
+        session.code, participant.code, participant.label, p.round_number, p.id_in_group, 
+        p.guess_1, p.random_reference, p.guess_2,
+        p.time_readnews, p.time_guess_1, p.time_guess_2
+        ]      
 
 
 
@@ -91,22 +95,38 @@ class Round_1(Page):
         if player.round_number == 1:
             player.participant.Guess_set = ['NN']*45   #在一开始赋值总数据列表
         return player.round_number == 1
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.start = time.time()
 
 class News(Page):
     # timeout_seconds = 30
-    pass
+    @staticmethod
+    def is_displayed(player):
+        player.start = time.time()
+        return player.round_number <= Maxround
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.end = time.time()
+        player.time_readnews = int(player.end - player.start)
+        player.start = time.time()
 
 class Guess1(Page):
     # timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_1']
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.end = time.time()
+        player.time_guess_1= int(player.end - player.start)
+        player.start = time.time()
 
 
 class Wait(WaitPage):
     pass
 
 class Reference(Page):
-    # timeout_seconds = 10
+    timeout_seconds = 5
     @staticmethod
     def vars_for_template(player: Player):
         group = player.group
@@ -115,11 +135,18 @@ class Reference(Page):
         return dict(
         Refer = Refer
     )
+    @staticmethod
+    def before_next_page(player: Player, timeout_happened):
+        player.start = time.time()
 
 class Guess2(Page):
     # timeout_seconds = 30
     form_model = 'player'
     form_fields = ['guess_2']
+    def before_next_page(player: Player, timeout_happened):
+        player.end = time.time()
+        player.time_guess_2= int(player.end - player.start)
+        player.start = time.time()
 
 class Wait2(WaitPage):
     pass
