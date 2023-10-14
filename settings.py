@@ -87,7 +87,7 @@ SESSION_FIELDS = []
 
 
 #------------------------------------------------#
-Maxround = 30
+Maxround = 5
 
 
 #Real Result
@@ -104,14 +104,14 @@ AI_REF_SET = [21,18,38,91,13,
             5,12,65,0,100,85,16,92,28,95]
 
 #Multi-AI_reference
-file = '_static/AI_refs_test.xlsx'
+file = '_static/AI_refs.xlsx'
 MULTI_AI_REF_SET = pd.read_excel(file)
 #------------------------------------------------#
 
 ROOMS = [
     dict(
-        name='Pilot_Sep_21',
-        display_name='Pilot_Sep_21',
+        name='Pilot',
+        display_name='Pilot',
         participant_label_file='_rooms/pilot.txt',
         use_secure_urls=False
     ),]

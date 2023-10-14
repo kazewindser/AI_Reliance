@@ -21,14 +21,15 @@ class C(BaseConstants):
     TF = [[True, Lexicon.true],
         [False, Lexicon.false]]
     # 問題番号と問題の対応
-    q_dict = {1:['q1'], 2:['q2'], 3:['q3'], 4:['q4'],5:['q5']}
+    q_dict = {1:['q1'], 2:['q2'], 3:['q3'], 4:['q4'],}
+    # 5:['q5']}
     # 各問題について選択肢の種類と正答
     corrects = {
         'q1': {'opt': TF, 'correct': True},
         'q2': {'opt': TF, 'correct': True},
         'q3': {'opt': TF, 'correct': False},
         'q4': {'opt': TF, 'correct': False},
-        'q5': {'opt': Lexicon.questions['q5']['opt'], 'correct': 2},
+        # 'q5': {'opt': Lexicon.questions['q5']['opt'], 'correct': 2},
     }
 
 class Subsession(BaseSubsession):
@@ -123,7 +124,7 @@ class Correct(Page):
         return
     @staticmethod
     def app_after_this_page(player: Player, upcoming_apps):
-        if player.numq == 5:
+        if player.numq == 4:
             player.wait = True
             if C.WAIT == True:
                 pass

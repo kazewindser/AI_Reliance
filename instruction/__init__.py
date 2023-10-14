@@ -26,6 +26,9 @@ class Player(BasePlayer):
 
 
 # PAGES
+class Waitplease(Page):
+    pass
+
 class Instruction(Page):
     @staticmethod
     def vars_for_template(player: Player):
@@ -36,4 +39,4 @@ class Instruction(Page):
 
 
 
-page_sequence = [Instruction]
+page_sequence = [Waitplease,Instruction]

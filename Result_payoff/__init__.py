@@ -51,6 +51,16 @@ def set_additional_payoff(player:Player):    #max{0, 2000-0.3(R-100r)^2}=?円
         ad_pay = 2000-0.3*(player.R-player.real_result)**2
         player.payoff = max(0,ad_pay)
 
+def custom_export(players):
+    # header row
+    yield ['session', 'participant_code', 'label', 'Final_Payoff']
+    for p in players:
+        participant = p.participant
+        session = p.session
+        yield [
+        session.code, participant.code, participant.label, participant.payoff_plus_participation_fee()
+        ]      
+
 
 # PAGES
 class Results_show(Page):

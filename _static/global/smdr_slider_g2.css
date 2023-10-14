@@ -75,13 +75,6 @@ input.nonanchoring::-moz-range-thumb {
     z-index: 10 !important;
 }
 
-/*.grid span {
-    width: 1px;
-    height: 30px;
-    background: #C0C0C0;
-    z-index: 1 !important;
-}*/
-
 
 .grid span.boldgrid {
     width: 3px;
