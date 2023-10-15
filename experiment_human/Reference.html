@@ -3,17 +3,15 @@
 {{ endblock }}
 
 {{ block content }}
-<p> </p>
-
-{{ include C.NEWS }}
-
-<p> </p>
+<br>
 <p>
     <b>このニュースに対して、今日の実験の参加者の中からランダムに選ばれた他の一人の推測結果は：</b>
-    <p> </p>
+    <br>
     <font size=6><center><strong>{{ Refer }}</strong></center></font>
 </p>
-<p> </p>
+
+{{ include C.NEWS }}
+<br>
 
 <p style="text-align: right;">
   <button class="otree-btn-next btn btn-primary">次へ</button>

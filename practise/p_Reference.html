@@ -14,6 +14,21 @@
         }
     </style>
 </head>
+
+<br>
+<p>
+    <b>このニュースに対して、
+    {{ if inAI == True }}
+        このニュースに対して、ChatGPTの24回推測からランダムに一つ選ばれた推測結果は</b> 
+        <p> </p>
+        <font size=6><center><strong>55</strong></center></font>
+    {{ else }}
+        今日の実験の参加者の中からランダムに選ばれた他の一人の推測結果は：</b>
+        <p> </p>
+        <font size=6><center><strong>{{ Refer }}</strong></center></font>
+    {{ endif }}
+</p>
+
 {{ if inAI == True }}
     <body>
         <!-- 创建一个框 -->
@@ -28,21 +43,8 @@
             </div>
 {{ endif}}
 
-<p> </p>
-<p>
-    <b>このニュースに対して、
-    {{ if inAI == True }}
-        このニュースに対して、ChatGPTの24回推測からランダムに一つ選ばれた推測結果は</b> 
-        <p> </p>
-        <font size=6><center><strong>55</strong></center></font>
-    {{ else }}
-        今日の実験の参加者の中からランダムに選ばれた他の一人の推測結果は：</b>
-        <p> </p>
-        <font size=6><center><strong>{{ Refer }}</strong></center></font>
-    {{ endif }}
-</p>
-<p> </p>
 
+<br>
 <p style="text-align: right;">
   <button class="otree-btn-next btn btn-primary">次へ</button>
 </p>

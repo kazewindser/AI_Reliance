@@ -14,8 +14,21 @@
             background-color: #E6E6E9; 
             margin: 0 auto; /* 居中 */
         }
+
+        #myBox img {
+            max-width: 100%;
+            height: auto;
+        }
+
     </style>
 </head>
+
+<br>
+<p>
+    <b>このニュースに対して、ChatGPTの24回推測からランダムに一つ選ばれた推測結果({{ref_id}})は：</b>
+    <br>
+    <font size=6><center><strong>{{ Refer }}</strong></center></font>
+</p>
 
 <!-- creat a box -->
 <div id="myBox">
@@ -23,16 +36,7 @@
         <img src="{{ static image_path }}"/>
     </center>
 </div>
-
-
-<p> </p>
-<p>
-    <b>このニュースに対して、ChatGPTの24回推測からランダムに一つ選ばれた推測結果({{ref_id}})は：</b>
-    <p> </p>
-    <font size=6><center><strong>{{ Refer }}</strong></center></font>
-</p>
-<p> </p>
-  
+<br>
 <p style="text-align: right;">
   <button class="otree-btn-next btn btn-primary">次へ</button>
 </p>
