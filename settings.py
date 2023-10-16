@@ -5,62 +5,10 @@ import pandas as pd
 
 SESSION_CONFIGS = [
     dict(
-        name='experiment_human_test',
-        app_sequence=['experiment_human','Result_payoff'],
-        num_demo_participants=3,
-        AI = False
-    ),
-    dict(
-        name='experiment_AI_test',
-        app_sequence=['experiment_AI','Result_payoff'],
-        num_demo_participants=1,
-        AI = True
-    ),
-    dict(
-        name='multi_ref_AI_test',
-        app_sequence=['AI_multi_ref','Result_payoff'],
-        num_demo_participants=1,
-        AI = True
-    ),
-    dict(
-        name='instruction_test',
-        app_sequence=['instruction'],
-        num_demo_participants=1,
-        AI = True
-    ),
-    dict(
-        name='quiz_test',
-        app_sequence=['Quiz_human','Quiz_AI','practise'],
-        num_demo_participants=1,
-    ),
-    dict(
-        name='questionnaire_test',
-        app_sequence=['questionnaire'],
-        num_demo_participants=1,
-    ),
-    dict(
-        name='practise_test',
-        app_sequence=['practise'],
-        num_demo_participants=2,
-        AI = False
-    ),
-    dict(
-        name='noslider',
-        app_sequence=['practise_protype'],
-        num_demo_participants=1,
-        AI = False
-    ),
-    dict(
         name='HUMAN',
         app_sequence=['instruction','Quiz_human','practise','experiment_human','questionnaire','Result_payoff'],
         num_demo_participants=3,
         AI = False
-    ),
-    dict(
-        name='AI',
-        app_sequence=['instruction','Quiz_AI','practise','experiment_AI','questionnaire','Result_payoff'],
-        num_demo_participants=1,
-        AI = True
     ),
     dict(
         name='Multi_AI',
@@ -87,7 +35,7 @@ SESSION_FIELDS = []
 
 
 #------------------------------------------------#
-Maxround = 45
+Maxround = 5
 
 
 #Real Result
