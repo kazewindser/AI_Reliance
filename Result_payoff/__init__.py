@@ -49,16 +49,12 @@ def set_additional_payoff(player:Player):    #max{0, 2000-0.3(R-100r)^2}=?円
     else:
         player.R = selcted_R    
         ad_pay = 2000-0.3*(player.R-player.real_result)**2
-        real_payoff = max(0,ad_pay)
-        player.payoff = round_up_to_tens(real_payoff)
+        player.payoff = max(0,ad_pay)
 
 def round_up_to_tens(n):
     if n == 0:
         return 0
     return ((n + 9) // 10) * 10
-
-
-
 
 def custom_export(players):
     # header row
@@ -66,8 +62,9 @@ def custom_export(players):
     for p in players:
         participant = p.participant
         session = p.session
+        FINAL_PAYOFF = round_up_to_tens(participant.payoff_plus_participation_fee())
         yield [
-        session.code, participant.code, participant.label, participant.payoff_plus_participation_fee()
+        session.code, participant.code, participant.label, FINAL_PAYOFF
         ]      
 
 
