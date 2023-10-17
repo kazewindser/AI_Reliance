@@ -35,7 +35,7 @@ SESSION_FIELDS = []
 
 
 #------------------------------------------------#
-Maxround = 45
+Maxround = 30
 
 
 #Real Result
