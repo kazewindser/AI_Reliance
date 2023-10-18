@@ -76,9 +76,13 @@
         });
     });
 
-    document.getElementById("slider").addEventListener("input", function() {
+    // document.getElementById("slider").addEventListener("input", function() { 
+    // 这里使用input监测输入会有问题，当用户最初输入0的时候，该事件依然无法触发显示函数
+    function changeability() {
         document.getElementById("nextButton").disabled = false;
-    });
+    };
+
+    document.getElementById("slider").addEventListener("click", changeability);
 
 </script>
 <!-- slider_setting -->
