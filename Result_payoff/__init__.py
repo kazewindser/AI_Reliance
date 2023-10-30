@@ -1,5 +1,5 @@
 from otree.api import *
-from settings import REAL_RESULT,AI_REF_SET, Maxround
+from settings import REAL_RESULT, Maxround
 import random
 
 doc = """

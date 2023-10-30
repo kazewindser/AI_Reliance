@@ -144,9 +144,4 @@ class Wait(WaitPage):
     def app_after_this_page(player: Player, upcoming_apps):
         return upcoming_apps[0]
 
-
-class Results(Page):
-    pass
-
-
 page_sequence = [Quiz,Incorrect,Correct, Wait]

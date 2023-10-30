@@ -1,5 +1,5 @@
 from otree.api import *
-from settings import Maxround, AI_REF_SET, MULTI_AI_REF_SET
+from settings import Maxround, MULTI_AI_REF_SET
 import random, time
 
 doc = """
@@ -34,10 +34,10 @@ class Player(BasePlayer):
     AI_reference = models.IntegerField()
 
     #parameter to count time
-    time_readnews = models.IntegerField()  
-    time_guess_1 = models.IntegerField()  
+    time_readnews = models.FloatField()  
+    time_guess_1 = models.FloatField()  
     # time_readref = models.IntegerField()  
-    time_guess_2 = models.IntegerField()
+    time_guess_2 = models.FloatField()
 
     start = models.FloatField()
     end = models.FloatField()  
@@ -99,7 +99,7 @@ class News(Page):
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
         time_readnews = player.end - player.start
-        player.time_readnews = format(time_readnews,'.1f')
+        player.time_readnews = float(format(time_readnews,'.1f'))
         player.start = time.time()
     
 class Guess1(Page):
@@ -110,7 +110,7 @@ class Guess1(Page):
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
         time_guess_1 = player.end - player.start
-        player.time_guess_1 = format(time_guess_1, '.1f')
+        player.time_guess_1 = float(format(time_guess_1, '.1f'))
         player.start = time.time()
 
 class Wait(WaitPage):
@@ -139,7 +139,7 @@ class Guess2(Page):
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
         time_guess_2 = player.end - player.start
-        player.time_guess_2 = format(time_guess_2,'.1f') 
+        player.time_guess_2 = float(format(time_guess_2,'.1f'))
         player.start = time.time()
 
 

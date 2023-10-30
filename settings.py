@@ -18,7 +18,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='test',
-        app_sequence=['practise'],
+        app_sequence=['AI_multi_ref'],
         num_demo_participants=1,
         AI = True
     ),
@@ -50,15 +50,9 @@ REAL_RESULT = [0,26,0,100,0,37,43,100,0,100,
                 0,100,100,70,0,50,48,100,100,100,
                 54,100,74,0,0,20,0,100,0,100,
                 100,0,100,14,100]
-#AI_reference
-AI_REF_SET = [21,18,38,91,13,
-            4,15,70,23,95,90,45,15,42,34,
-            71,73,26,27,72,65,35,70,38,24,
-            42,0,85,95,75,27,95,23,15,36,
-            5,12,65,0,100,85,16,92,28,95]
 
 #Multi-AI_reference
-file = '_static/AI_refs.xlsx'
+file = '_static/AI_reformal.xlsx'
 MULTI_AI_REF_SET = pd.read_excel(file)
 #------------------------------------------------#
 
