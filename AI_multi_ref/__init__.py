@@ -83,7 +83,7 @@ class Round_1(Page):
     @staticmethod
     def is_displayed(player):
         if player.round_number == 1:
-            player.participant.Guess_set = ['NN']*45   #在一开始赋值总数据列表
+            player.participant.Guess_set = ['NN']*Maxround   #在一开始赋值总数据列表
         return player.round_number == 1
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
@@ -98,7 +98,8 @@ class News(Page):
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
-        player.time_readnews = int(player.end - player.start)
+        time_readnews = player.end - player.start
+        player.time_readnews = format(time_readnews,'.1f')
         player.start = time.time()
     
 class Guess1(Page):
@@ -108,7 +109,8 @@ class Guess1(Page):
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
-        player.time_guess_1= int(player.end - player.start)
+        time_guess_1 = player.end - player.start
+        player.time_guess_1 = format(time_guess_1, '.1f')
         player.start = time.time()
 
 class Wait(WaitPage):
@@ -136,7 +138,8 @@ class Guess2(Page):
     form_fields = ['guess_2']
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
-        player.time_guess_2= int(player.end - player.start)
+        time_guess_2 = player.end - player.start
+        player.time_guess_2 = format(time_guess_2,'.1f') 
         player.start = time.time()
 
 
