@@ -18,7 +18,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='test',
-        app_sequence=['AI_multi_ref'],
+        app_sequence=['AI_multi_ref','questionnaire','Result_payoff'],
         num_demo_participants=1,
         AI = True
     ),
@@ -41,7 +41,7 @@ SESSION_FIELDS = []
 
 
 #------------------------------------------------#
-Maxround = 30
+Maxround = 2
 
 
 #Real Result

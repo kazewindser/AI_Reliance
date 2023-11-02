@@ -99,6 +99,7 @@ class p_Finish(Page):
         p_g1 = player.guess_1
         p_g2 = player.guess_2
 
+        
         return dict(
             p_g1 = p_g1,
             p_g2 = p_g2

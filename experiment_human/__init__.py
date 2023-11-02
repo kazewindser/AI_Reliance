@@ -91,7 +91,7 @@ class Round_1(Page):
     @staticmethod
     def is_displayed(player):
         if player.round_number == 1:
-            player.participant.Guess_set = ['NN']*Maxround   #在一开始赋值总数据列表
+            player.participant.Guess_set = ['NN']*30   #在一开始赋值总数据列表
         return player.round_number == 1
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
