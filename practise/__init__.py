@@ -64,7 +64,7 @@ class Wait(WaitPage):
     pass
 
 class p_Reference(Page):
-    timeout_seconds = 5
+    timeout_seconds = 10
     @staticmethod
     def vars_for_template(player: Player):
         inAI = player.session.config['AI']

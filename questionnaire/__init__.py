@@ -47,6 +47,19 @@ class Player(BasePlayer):
     )
 
 # PAGES
+def custom_export(players):
+    # header row
+    yield ['session', 'participant_code', 'label',  'id_in_group',
+    'age','gender','lan_jp',
+    'affiliate','chatGPT','chatGPT_times','programming']
+    for p in players:
+        participant = p.participant
+        session = p.session
+        yield [
+        session.code, participant.code, participant.label,  p.id_in_group, 
+        p.age, p.gender, p.lan_jp,
+        p.affiliate, p.chatGPT, p.chatGPT_times,p.programming
+        ]      
 
 
 class Questions(Page):

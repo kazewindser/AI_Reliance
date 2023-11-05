@@ -107,7 +107,7 @@ class News(Page):
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
         time_readnews = player.end - player.start
-        player.time_readnews = format(time_readnews,'.1f')
+        player.time_readnews = float(format(time_readnews,'.1f'))
         player.start = time.time()
 
 class Guess1(Page):
@@ -117,7 +117,7 @@ class Guess1(Page):
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
         time_guess_1 = player.end - player.start
-        player.time_guess_1 = format(time_guess_1,'.1f')
+        player.time_guess_1 = float(format(time_guess_1,'.1f'))
         player.start = time.time()
 
 
@@ -125,7 +125,7 @@ class Wait(WaitPage):
     pass
 
 class Reference(Page):
-    timeout_seconds = 5
+    timeout_seconds = 10
     @staticmethod
     def vars_for_template(player: Player):
         group = player.group
@@ -145,7 +145,7 @@ class Guess2(Page):
     def before_next_page(player: Player, timeout_happened):
         player.end = time.time()
         time_guess_2= player.end - player.start
-        player.time_guess_2 = format(time_guess_2,'.1f') 
+        player.time_guess_2 = float(format(time_guess_2,'.1f')) 
         player.start = time.time()
 
 class Wait2(WaitPage):

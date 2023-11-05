@@ -4,12 +4,12 @@ os.environ["NUMEXPR_MAX_THREADS"] = "8"
 import pandas as pd
 
 SESSION_CONFIGS = [
-    # dict(
-    #     name='HUMAN',
-    #     app_sequence=['instruction','Quiz_human','practise','experiment_human','questionnaire','Result_payoff'],
-    #     num_demo_participants=3,
-    #     AI = False
-    # ),
+    dict(
+        name='HUMAN',
+        app_sequence=['instruction','Quiz_human','practise','experiment_human','questionnaire','Result_payoff'],
+        num_demo_participants=3,
+        AI = False
+    ),
     dict(
         name='Multi_AI',
         app_sequence=['instruction','Quiz_AI','practise','AI_multi_ref','questionnaire','Result_payoff'],
@@ -41,7 +41,7 @@ SESSION_FIELDS = []
 
 
 #------------------------------------------------#
-Maxround = 2
+Maxround = 30
 
 
 #Real Result
