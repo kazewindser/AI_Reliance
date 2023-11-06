@@ -18,7 +18,7 @@ SESSION_CONFIGS = [
     ),
     dict(
         name='test',
-        app_sequence=['AI_multi_ref','questionnaire','Result_payoff'],
+        app_sequence=['questionnaire'],
         num_demo_participants=1,
         AI = True
     ),

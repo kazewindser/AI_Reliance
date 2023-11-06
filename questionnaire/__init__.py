@@ -45,20 +45,24 @@ class Player(BasePlayer):
         label = Lexicon.q_programming,
         choices = Lexicon.q_programming_opts
     )
+    AIorHUMAN = models.IntegerField(
+        label = Lexicon.q_AIorHUMAN,
+        choices = Lexicon.q_AIorHUMAN_opts
+    )
 
 # PAGES
 def custom_export(players):
     # header row
     yield ['session', 'participant_code', 'label',  'id_in_group',
     'age','gender','lan_jp',
-    'affiliate','chatGPT','chatGPT_times','programming']
+    'affiliate','chatGPT','chatGPT_times','programming','AIorHUMAN']
     for p in players:
         participant = p.participant
         session = p.session
         yield [
         session.code, participant.code, participant.label,  p.id_in_group, 
         p.age, p.gender, p.lan_jp,
-        p.affiliate, p.chatGPT, p.chatGPT_times,p.programming
+        p.affiliate, p.chatGPT, p.chatGPT_times,p.programming,p.AIorHUMAN
         ]      
 
 
@@ -66,7 +70,7 @@ class Questions(Page):
     form_model = 'player'
     form_fields = ['age', 'gender','lan_jp',
                     'affiliate','chatGPT','chatGPT_times',
-                    'programming']
+                    'programming','AIorHUMAN']
     @staticmethod
     def vars_for_template(player: Player):
         return dict(
