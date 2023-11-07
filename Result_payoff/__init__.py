@@ -85,10 +85,6 @@ class Results_show(Page):
             r21 = REAL_RESULT[20],r22 = REAL_RESULT[21],r23 = REAL_RESULT[22],r24 = REAL_RESULT[23],r25 = REAL_RESULT[24],
             r26 = REAL_RESULT[25],r27 = REAL_RESULT[26],r28 = REAL_RESULT[27],r29 = REAL_RESULT[28],r30 = REAL_RESULT[29] ,
 
-            r31 = REAL_RESULT[30],r32 = REAL_RESULT[31],r33 = REAL_RESULT[32],r34 = REAL_RESULT[33],r35 = REAL_RESULT[34],
-            r36 = REAL_RESULT[35],r37 = REAL_RESULT[36],r38 = REAL_RESULT[37],r39 = REAL_RESULT[38],r40 = REAL_RESULT[39] ,
-            r41 = REAL_RESULT[40],r42 = REAL_RESULT[41],r43 = REAL_RESULT[42],r44 = REAL_RESULT[43],r45 = REAL_RESULT[44],
-
             g1_1 = GS[0][0],g1_2 = GS[0][1], g2_1 = GS[1][0],g2_2 = GS[1][1], g3_1 = GS[2][0],g3_2 = GS[2][1], g4_1 = GS[3][0],g4_2 = GS[3][1], g5_1 = GS[4][0],g5_2 = GS[4][1],
             g6_1 = GS[5][0],g6_2 = GS[5][1], g7_1 = GS[6][0],g7_2 = GS[6][1], g8_1 = GS[7][0],g8_2 = GS[7][1], g9_1 = GS[8][0],g9_2 = GS[8][1], g10_1 = GS[9][0],g10_2 = GS[9][1],
 
@@ -115,10 +111,6 @@ class Final_Payoff(Page):
 
             r21 = REAL_RESULT[20],r22 = REAL_RESULT[21],r23 = REAL_RESULT[22],r24 = REAL_RESULT[23],r25 = REAL_RESULT[24],
             r26 = REAL_RESULT[25],r27 = REAL_RESULT[26],r28 = REAL_RESULT[27],r29 = REAL_RESULT[28],r30 = REAL_RESULT[29] ,
-
-            r31 = REAL_RESULT[30],r32 = REAL_RESULT[31],r33 = REAL_RESULT[32],r34 = REAL_RESULT[33],r35 = REAL_RESULT[34],
-            r36 = REAL_RESULT[35],r37 = REAL_RESULT[36],r38 = REAL_RESULT[37],r39 = REAL_RESULT[38],r40 = REAL_RESULT[39] ,
-            r41 = REAL_RESULT[40],r42 = REAL_RESULT[41],r43 = REAL_RESULT[42],r44 = REAL_RESULT[43],r45 = REAL_RESULT[44],
 
             g1_1 = GS[0][0],g1_2 = GS[0][1], g2_1 = GS[1][0],g2_2 = GS[1][1], g3_1 = GS[2][0],g3_2 = GS[2][1], g4_1 = GS[3][0],g4_2 = GS[3][1], g5_1 = GS[4][0],g5_2 = GS[4][1],
             g6_1 = GS[5][0],g6_2 = GS[5][1], g7_1 = GS[6][0],g7_2 = GS[6][1], g8_1 = GS[7][0],g8_2 = GS[7][1], g9_1 = GS[8][0],g9_2 = GS[8][1], g10_1 = GS[9][0],g10_2 = GS[9][1],
