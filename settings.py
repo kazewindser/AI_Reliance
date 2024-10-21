@@ -4,21 +4,15 @@ os.environ["NUMEXPR_MAX_THREADS"] = "8"
 import pandas as pd
 
 SESSION_CONFIGS = [
-    # dict(
-    #     name='HUMAN',
-    #     app_sequence=['instruction','Quiz_human','practise','experiment_human','questionnaire','Result_payoff'],
-    #     num_demo_participants=3,
-    #     AI = False
-    # ),
     dict(
-        name='Multi_AI',
-        app_sequence=['instruction','Quiz_AI','practise','AI_multi_ref','questionnaire','Result_payoff'],
-        num_demo_participants=1,
-        AI = True
+        name='HUMAN',
+        app_sequence=['instruction','Quiz_human','practise','HUMAN','questionnaire','Result_payoff'],
+        num_demo_participants=3,
+        AI = False
     ),
     dict(
-        name='test',
-        app_sequence=['questionnaire'],
+        name='AI',
+        app_sequence=['instruction','Quiz_AI','practise','AI','questionnaire','Result_payoff'],
         num_demo_participants=1,
         AI = True
     ),
@@ -59,11 +53,18 @@ MULTI_AI_REF_SET = pd.read_excel(file)
 
 ROOMS = [
     dict(
-        name='Pilot',
-        display_name='Pilot',
-        participant_label_file='_rooms/pilot.txt',
-        use_secure_urls=False
-    ),]
+        name='pclab',
+        display_name='社研PCラボ',
+        participant_label_file='_rooms/pclab.txt',
+    ),
+    dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
+    dict(
+        name='virtual_Lab',
+        display_name='Room for virtual Lab 40 subjects (sub**)',
+        participant_label_file='_rooms/virtualLab.txt',
+    )
+]
+
 
 
 

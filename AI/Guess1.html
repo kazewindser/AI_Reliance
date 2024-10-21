@@ -3,7 +3,7 @@
 {{ endblock }}
 {{ block content }}
 
-<p><b>このニュースの正しさを推測してください。</b></p>
+<p><b>このニュースの正しさ(真のニュースの部分の割合)を推測してください。</b></p>
 <p> </p>
 
 <!-- boundline -->
@@ -74,9 +74,14 @@
         });
     });
 
-    document.getElementById("slider").addEventListener("input", function() {
+// document.getElementById("slider").addEventListener("input", function() { 
+    // 这里如果使用上方input监测输入会有问题，当用户最初输入0的时候，该事件依然无法触发显示函数
+    function changeability() {
         document.getElementById("nextButton").disabled = false;
-    });
+    };
+
+    document.getElementById("slider").addEventListener("click", changeability);
+    // 不做就不能出去的房间
 
 </script>
 <!-- slider_setting -->

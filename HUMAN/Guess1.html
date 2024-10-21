@@ -3,7 +3,7 @@
 {{ endblock }}
 {{ block content }}
 
-<p><b>このニュースの正しさを推測してください。</b></p>
+<p><b>このニュースの正しさ(真のニュースの部分の割合)を推測してください。</b></p>
 <p> </p>
 
 <!-- boundline -->
@@ -12,7 +12,6 @@
 <p> </p>
 
 <center><strong>1回目の推測:</strong></center>
-
 
 <!-- slider input -->
 <link rel="stylesheet" href="{% static 'global/smdr_slider.css' %}">
@@ -74,7 +73,7 @@
         });
     });
 
-// document.getElementById("slider").addEventListener("input", function() { 
+    // document.getElementById("slider").addEventListener("input", function() { 
     // 这里如果使用上方input监测输入会有问题，当用户最初输入0的时候，该事件依然无法触发显示函数
     function changeability() {
         document.getElementById("nextButton").disabled = false;
@@ -87,19 +86,18 @@
 <!-- slider_setting -->
 
 
-
+    
 <!-- boundline -->
 <p> </p>
 <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=6>
 <p> </p>
-  
+
+ 
 <p><b>答えを出しましたら、<font color="blue">「次へ」</font>を押してください。</b></p>
   
 <p style="text-align: right;">
-  <button class="otree-btn-next btn btn-primary" id="nextButton" disabled >次へ</button>
+  <button class="otree-btn-next btn btn-primary"id="nextButton" disabled >次へ</button>
 </p>
-
-
 
 {{ endblock }}
 

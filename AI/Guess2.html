@@ -14,7 +14,7 @@
 <!-- present previous guess and ref -->
 
 
-<p><b>このニュースの正しさを再度推測してください。</b></p>
+<p><b>このニュースの正しさ(真のニュースの部分の割合)を再度推測してください。</b></p>
 <p> </p>
 <p> </p>
 
@@ -56,8 +56,6 @@
 <!-- slider_setting -->
 <script>
     // 最大値と刻み幅の設定
-    const maxP = js_vars.maxP;
-    const step = js_vars.step;
     const slider = document.getElementById('slider');
     slider.max = 100;
     slider.step = 1;
@@ -90,6 +88,8 @@
         });
     });
 
+
+
     // present 1st guess and Reference
    document.addEventListener("DOMContentLoaded", function() {
         var slider = document.querySelector(".form-range");
@@ -102,11 +102,16 @@
         var ref_element = document.getElementById("id_ref");
         var ref = parseInt(ref_element.innerText, 10);
 
+        const sliderContainer = document.querySelector(".slider-container");
+        const boldGridElements = document.querySelectorAll(".grid span.boldgrid");    
+        const leftLineCenter = boldGridElements[0].getBoundingClientRect().left + boldGridElements[0].getBoundingClientRect().width / 2 - sliderContainer.getBoundingClientRect().left;
+        const rightLineCenter = boldGridElements[1].getBoundingClientRect().left + boldGridElements[1].getBoundingClientRect().width / 2 - sliderContainer.getBoundingClientRect().left;
+        const gridslider = rightLineCenter - leftLineCenter
+
         function updateDotsPosition() {
-            var offset = -1; 
-            var dotWidth = 20;
-            var guess1Position = (guess_1 / slider.max) * slider.offsetWidth- (dotWidth / 2)+ offset;;
-            var refPosition = (ref / slider.max) * slider.offsetWidth- (dotWidth / 2)+ offset;;
+
+            var guess1Position = (guess_1 / slider.max) * gridslider;
+            var refPosition = (ref / slider.max) * gridslider;
 
             dotGuess1.style.left = guess1Position + "px";
             dotRef.style.left = refPosition + "px";
@@ -118,9 +123,15 @@
     });
 
 
-    document.getElementById("slider").addEventListener("input", function() {
+// document.getElementById("slider").addEventListener("input", function() { 
+    // 这里如果使用上方input监测输入会有问题，当用户最初输入0的时候，该事件依然无法触发显示函数
+    function changeability() {
         document.getElementById("nextButton").disabled = false;
-    });
+    };
+
+    document.getElementById("slider").addEventListener("click", changeability);
+    // 不做就不能出去的房间
+    
 </script>
 <!-- slider_setting -->
 

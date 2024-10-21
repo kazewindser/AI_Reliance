@@ -7,14 +7,14 @@
 あなたの<font color="blue" style="opacity: 0.5;"><b>1回目の推測結果</b></font>は：
 <font color="blue" style="opacity: 0.5;"><b id="id_guess_1">{{ player.guess_1 }}</b></font>
 <p> </p>
-<font color="red" style="opacity: 0.5;"><b>ChatGPTの推測結果</b></font>は：
-<font color="red" style="opacity: 0.5;"><b id="id_ref">{{ player.AI_reference }}</b></font>
+今日の実験の参加者の中からランダムに<font color="red" style="opacity: 0.5;"><b>選ばれた他の一人の推測結果</b></font>は：
+    <font color="red" style="opacity: 0.5;"><b id="id_ref">{{ player.random_reference }}</b></font>
 <p> </p>
 <p> </p>
 <!-- present previous guess and ref -->
 
 
-<p><b>このニュースの正しさを再度推測してください。</b></p>
+<p><b>このニュースの正しさ(真のニュースの部分の割合)を再度推測してください。</b></p>
 <p> </p>
 <p> </p>
 
@@ -88,8 +88,6 @@
         });
     });
 
-
-
     // present 1st guess and Reference
    document.addEventListener("DOMContentLoaded", function() {
         var slider = document.querySelector(".form-range");
@@ -123,7 +121,8 @@
     });
 
 
-// document.getElementById("slider").addEventListener("input", function() { 
+
+   // document.getElementById("slider").addEventListener("input", function() { 
     // 这里如果使用上方input监测输入会有问题，当用户最初输入0的时候，该事件依然无法触发显示函数
     function changeability() {
         document.getElementById("nextButton").disabled = false;
@@ -140,14 +139,14 @@
 <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=6>
 <p> </p>
 
-
-
-
-
 <p><b>答えを出しましたら、<font color="blue">「次へ」</font>を押してください。</b></p>
-  
+
+<!-- <p style="text-align: right;">
+  <button class="otree-btn-next btn btn-primary"　id="nextButton" disabled>次へ</button>
+</p> -->
+
 <p style="text-align: right;">
   <button class="otree-btn-next btn btn-primary"id="nextButton" disabled >次へ</button>
 </p>
-    
 {{ endblock }}
+
