@@ -9,7 +9,7 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'experiment_AI_multi_ref'
+    NAME_IN_URL = 'preHuman'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = Maxround
 
@@ -47,7 +47,7 @@ class Player(BasePlayer):
 
 def Gen_AIref(player:Player):
     round_id = player.round_number-1
-    ref_id = random.randint(0,23)
+    ref_id = random.randint(0,41)
 
     player.AI_ref_id = ref_id+1
     player.AI_reference = int(MULTI_AI_REF_SET.iloc[round_id, ref_id])
@@ -126,7 +126,6 @@ class Reference(Page):
         return dict(
         Refer = Refer,
         ref_id = ref_id,
-        image_path='AI_REF/{}/{}.png'.format(player.round_number,ref_id)
     )
     @staticmethod
     def before_next_page(player: Player, timeout_happened):

@@ -12,6 +12,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     SLIDE_HUMAN = '../_templates/global/Slide_human.html'
     SLIDE_AI = '../_templates/global/Slide_AI.html'
+    SLIDE_preHUMAN = '../_templates/global/Slide_preHUMAN.html'
 
 class Subsession(BaseSubsession):
     pass

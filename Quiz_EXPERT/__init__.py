@@ -8,7 +8,7 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'quiz_AI'
+    NAME_IN_URL = 'quiz_EXPERT'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 20
     # クイズ終了後他の参加者を待つときはTrueとする
@@ -21,10 +21,8 @@ class C(BaseConstants):
     TF = [[True, Lexicon.true],
         [False, Lexicon.false]]
     # 問題番号と問題の対応
-    q_dict = {
-    1:['q1'], 2:['q2'], 3:['q3'], 4:['q4'],
-    # 5:['q5']
-    }
+    q_dict = {1:['q1'], 2:['q2'], 3:['q3'], 4:['q4'],}
+    # 5:['q5']}
     # 各問題について選択肢の種類と正答
     corrects = {
         'q1': {'opt': TF, 'correct': True},
@@ -51,7 +49,7 @@ for k, v in C.corrects.items():
         v['field'] = models.BooleanField
     else:
         v['field'] = models.IntegerField
-    setattr(    # k = models.IntegerField(choices=...)と等価。   #使用 setattr 函数为 Player 类动态地添加属性
+    setattr(    # k = models.IntegerField(choices=...)と等価
         Player,
         k,
         v['field'](
@@ -143,5 +141,10 @@ class Wait(WaitPage):
     @staticmethod
     def app_after_this_page(player: Player, upcoming_apps):
         return upcoming_apps[0]
+
+
+class Results(Page):
+    pass
+
 
 page_sequence = [Quiz,Incorrect,Correct, Wait]

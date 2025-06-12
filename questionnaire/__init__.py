@@ -77,4 +77,7 @@ class Questions(Page):
             Lexicon=Lexicon,
         )
 
-page_sequence = [Questions]
+class Qfinish(Page):
+    pass
+
+page_sequence = [Questions,Qfinish]

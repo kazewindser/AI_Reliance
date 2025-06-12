@@ -1,0 +1,24 @@
+{{ block title }}
+    <p><center><strong>Round {{ player.round_number }}</strong></center></p>
+{{ endblock }}
+
+{{ block content }}
+<br>
+<p>
+    <b>このニュースに対して、本実験の過去（去年）の参加者（大阪大学の学生42名）の中から、ランダムに選ばれた１名の、同じニュースに対する１回目の推測結果は：</b>
+    <br>
+    <font size=6><center><strong>{{ Refer }}</strong></center></font>
+</p>
+<body oncontextmenu="return false" onselectstart="return false">
+{{ include C.NEWS }}
+</body>
+<br>
+
+<p style="text-align: right;">
+  <button class="otree-btn-next btn btn-primary">次へ</button>
+</p>
+
+
+{{ endblock }}
+
+

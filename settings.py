@@ -5,16 +5,16 @@ import pandas as pd
 
 SESSION_CONFIGS = [
     dict(
-        name='HUMAN',
-        app_sequence=['instruction','Quiz_human','practise','HUMAN','questionnaire','Result_payoff'],
-        num_demo_participants=3,
-        AI = False
-    ),
-    dict(
-        name='AI',
-        app_sequence=['instruction','Quiz_AI','practise','AI','questionnaire','Result_payoff'],
+        name='preHUMAN',
+        app_sequence=['instruction','Quiz_preHUMAN','practise','questionnaire','PreHUMAN','Result_payoff'],
         num_demo_participants=1,
         AI = True
+    ),
+    dict(
+        name='preHUMANtest',
+        app_sequence=['PreHUMAN'],
+        num_demo_participants=1,
+        AI=True
     ),
 ]
 
@@ -47,7 +47,7 @@ REAL_RESULT = [26,0,100,0,43,
                 100,0,100,0,14]
 
 #Multi-AI_reference
-file = '_static/AI_reformal.xlsx'
+file = '_static/preHumanAdvice.xlsx'
 MULTI_AI_REF_SET = pd.read_excel(file)
 #------------------------------------------------#
 
