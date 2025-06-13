@@ -46,9 +46,14 @@ REAL_RESULT = [26,0,100,0,43,
                 100,100,74,0,0,
                 100,0,100,0,14]
 
-#Multi-AI_reference
-file = '_static/preHumanAdvice.xlsx'
-MULTI_AI_REF_SET = pd.read_excel(file)
+#preHuman_advice
+AI_file = '_static/preHumanAdvice.xlsx'
+MULTI_AI_REF_SET = pd.read_excel(AI_file)
+
+#Expert_advice
+
+# EXPERT_file = '_static/ExpertAdvice.xlsx'
+# EXPERT_ADVICE = pd.read_excel(EXPERT_file)
 #------------------------------------------------#
 
 ROOMS = [
