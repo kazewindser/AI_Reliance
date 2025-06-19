@@ -1,5 +1,5 @@
 from otree.api import *
-from settings import Maxround
+from settings import Maxround,EXPERT_ADVICE
 import random, time
 
 doc = """
@@ -30,7 +30,8 @@ class Player(BasePlayer):
     guess_2 = models.IntegerField(
         min=0, max=100, initial = -1,
     )
-    random_reference = models.IntegerField()
+    Expert_advice = models.IntegerField()
+    Expert_source = models.IntegerField()
 
     #parameter to count time
     time_readnews = models.FloatField()  
@@ -44,21 +45,36 @@ class Player(BasePlayer):
 
 # Functions
 
-#Find a random reference
-def Refer_generate(player:Player):
-    players = player.get_others_in_group()
-    guess1_s = []
+# #Find a random reference
+# def Refer_generate(player:Player):
+#     players = player.get_others_in_group()
+#     guess1_s = []
+#
+#     for p in players:
+#         guess1_s.append(p.guess_1)
+#
+#     if guess1_s == []:
+#         Refer = []
+#         Refer.append(random.randint(1,100))
+#     else:
+#         Refer =  random.sample(guess1_s,1)
+#
+#     return Refer[0]
 
-    for p in players:
-        guess1_s.append(p.guess_1)
-        
-    if guess1_s == []:
-        Refer = []
-        Refer.append(random.randint(1,100))
-    else:
-        Refer =  random.sample(guess1_s,1)
 
-    return Refer[0]
+def GenExpertAdvice(player: Player):
+    current_round_data = EXPERT_ADVICE.iloc[player.round_number-1]
+    # 获取非NA值的索引
+    valid_indices = current_round_data.dropna().index
+    # 随机选择一个索引
+    chosen_index = random.choice(valid_indices)
+    # 获取对应的值
+    player.Expert_advice = int(current_round_data[chosen_index])
+    # 保存列索引（从1开始计数）
+    # 获取列名列表中的位置，而不是直接使用列名
+    player.Expert_source = list(EXPERT_ADVICE.columns).index(chosen_index) + 1
+
+
 
 
 def Save_guess(player:Player):
@@ -67,19 +83,19 @@ def Save_guess(player:Player):
 
         guess_per_round.append(player.guess_1)
         guess_per_round.append(player.guess_2)
-        guess_per_round.append(player.random_reference)
+        guess_per_round.append(player.Expert_advice)
         player.participant.Guess_set[player.round_number-1] = guess_per_round
 
 def custom_export(players):
     # header row
-    yield ['session', 'participant_code', 'label', 'round_number', 'id_in_group','guess_1','Human_ref','guess_2',
+    yield ['session', 'participant_code', 'label', 'round_number', 'id_in_group','guess_1','expert_advice','guess_2',
     'time_readnews','time_guess_1','time_guess_2']
     for p in players:
         participant = p.participant
         session = p.session
         yield [
         session.code, participant.code, participant.label, p.round_number, p.id_in_group, 
-        p.guess_1, p.random_reference, p.guess_2,
+        p.guess_1, p.Expert_advice, p.guess_2,
         p.time_readnews, p.time_guess_1, p.time_guess_2
         ]      
 
@@ -129,8 +145,8 @@ class Reference(Page):
     @staticmethod
     def vars_for_template(player: Player):
         group = player.group
-        Refer = Refer_generate(player)
-        player.random_reference = Refer
+        GenExpertAdvice(player)
+        Refer = player.Expert_advice
         return dict(
         Refer = Refer
     )
@@ -172,15 +188,3 @@ class Finish_Task(Page):
 
 
 page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Wait2, Finish_Round, Finish_Task ]
-
-
-
-
-
-
-
-
-
-
-
-

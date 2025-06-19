@@ -5,16 +5,16 @@ import pandas as pd
 
 SESSION_CONFIGS = [
     dict(
-        name='preHUMAN',
-        app_sequence=['instruction','Quiz_preHUMAN','practise','questionnaire','PreHUMAN','Result_payoff'],
+        name='EXPERT',
+        app_sequence=['instruction','Quiz_EXPERT','practise','questionnaire','EXPERT','Result_payoff'],
         num_demo_participants=1,
-        AI = True
+        AI = False
     ),
     dict(
-        name='preHUMANtest',
-        app_sequence=['PreHUMAN'],
+        name='EXPERT_test',
+        app_sequence=['EXPERT'],
         num_demo_participants=1,
-        AI=True
+        AI = False
     ),
 ]
 
@@ -51,9 +51,8 @@ AI_file = '_static/preHumanAdvice.xlsx'
 MULTI_AI_REF_SET = pd.read_excel(AI_file)
 
 #Expert_advice
-
-# EXPERT_file = '_static/ExpertAdvice.xlsx'
-# EXPERT_ADVICE = pd.read_excel(EXPERT_file)
+EXPERT_file = '_static/ExpertAdvice.csv'
+EXPERT_ADVICE = pd.read_csv(EXPERT_file)
 #------------------------------------------------#
 
 ROOMS = [

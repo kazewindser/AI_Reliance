@@ -13,6 +13,7 @@ class C(BaseConstants):
     SLIDE_HUMAN = '../_templates/global/Slide_human.html'
     SLIDE_AI = '../_templates/global/Slide_AI.html'
     SLIDE_preHUMAN = '../_templates/global/Slide_preHuman.html'
+    SLIDE_EXPERT = '../_templates/global/Slide_expert.html'
 
 class Subsession(BaseSubsession):
     pass

@@ -14,8 +14,8 @@ class C(BaseConstants):
     # クイズ終了後他の参加者を待つときはTrueとする
     WAIT = True
 
-    SLIDE_HUMAN = '../_templates/global/Slide_human.html'
-    HIDDEN_SLIDE_HUMAN =  '../_templates/global/Hidden_Slide_human.html'
+    SLIDE_EXPERT = '../_templates/global/Slide_expert.html'
+    HIDDEN_SLIDE_EXPERT =  '../_templates/global/Hidden_Slide_Expert.html'
 
     # 二択問題の選択肢
     TF = [[True, Lexicon.true],

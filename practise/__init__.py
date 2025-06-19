@@ -68,13 +68,7 @@ class p_Reference(Page):
     @staticmethod
     def vars_for_template(player: Player):
         inAI = player.session.config['AI']
-        if inAI == False:
-            Refer = Refer_generate(player)      
-            player.random_reference = Refer
-        else:
-            Refer = 'Now in AI Group'
         return dict(
-        Refer = Refer,
         inAI = inAI
     )
 
