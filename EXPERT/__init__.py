@@ -137,8 +137,6 @@ class Guess1(Page):
         player.start = time.time()
 
 
-class Wait(WaitPage):
-    pass
 
 class Reference(Page):
     timeout_seconds = 10
@@ -164,8 +162,6 @@ class Guess2(Page):
         player.time_guess_2 = float(format(time_guess_2,'.1f')) 
         player.start = time.time()
 
-class Wait2(WaitPage):
-    pass
 
 class Finish_Round(Page):
     timeout_seconds = 1
@@ -187,4 +183,4 @@ class Finish_Task(Page):
         return player.round_number == Maxround
 
 
-page_sequence = [ Round_1, News, Guess1, Wait, Reference, Guess2, Wait2, Finish_Round, Finish_Task ]
+page_sequence = [ Round_1, News, Guess1, Reference, Guess2, Finish_Round, Finish_Task ]
